@@ -1,0 +1,14 @@
+.image-container {
+    width: 75%; /* Reduce the container's width to 75% of the original size */
+}
+
+.centered {
+    margin: 0 auto;
+}
+
+.image-container img {
+    background-color: #aaa;
+    padding: 0;
+    width: 100%; /* Make the image occupy 100% of the container's width */
+    height: auto; /* Automatically adjust the height to maintain the aspect ratio */
+}

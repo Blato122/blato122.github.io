@@ -6,13 +6,78 @@
     <!--  ??  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mont Blanc cameras</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
    
     <script src="script.js" async></script>
 </head>
 
 <body>
-    <img src="https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/gouter/2024/march/25/2024-03-25--09:30:03.jpg" alt="gouter march 25 9 am">
-</body>
+    <div class="gallery">
+      <img id="gouter-photo" src="" alt="Gouter photo">
+      <div class="navigation">
+            <button id="gouter-prev-hour">Previous</button>
+            <button id="gouter-next-hour">Next</button>
+            <button id="gouter-prev-day">Previous</button>
+            <button id="gouter-next-day">Next</button>
+            <button id="gouter-prev-month">Previous</button>
+            <button id="gouter-next-month">Next</button>
+            <button id="gouter-prev-year">Previous</button>
+            <button id="gouter-next-year">Next</button>
+        </div>
+    </div>
+  
+    <div class="gallery">
+        <img id="tete-rousse-photo" src="" alt="Tete Rousse photo">
+        <div class="navigation">
+            <button id="tete-rousse-prev-hour">Previous</button>
+            <button id="tete-rousse-next-hour">Next</button>
+            <button id="tete-rousse-prev-day">Previous</button>
+            <button id="tete-rousse-next-day">Next</button>
+            <button id="tete-rousse-prev-month">Previous</button>
+            <button id="tete-rousse-next-month">Next</button>
+            <button id="tete-rousse-prev-year">Previous</button>
+            <button id="tete-rousse-next-year">Next</button>
+        </div>
+    </div>
+
+    <script>
+      const base_url = 'https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/gouter/';
+  
+      let date = new Date();
+      let current_year = currentDate.getFullYear();
+      let current_month = currentDate.getMonth() + 1; // Months are 0-indexed
+      let current_day = currentDate.getDate();
+      let current_hour = "0" + currentDate.getHours();
+  
+      let img_element = document.getElementById('gouter-photo');
+      let prev_hour_button = document.getElementById('gouter-prev-hour');
+      let next_hour_button = document.getElementById('gouter-next-hour');
+  
+      function update_photo() {
+        let img_url = `${baseUrl}${currentYear}/${currentMonth}/${currentDay}/${currentHour}.jpg`;
+        img_element.src = img_url;
+      }
+  
+      function update_hour(delta) {
+        date.setHours(currentDate.getHours() + delta);
+        current_year = currentDate.getFullYear();
+        current_month = currentDate.getMonth() + 1; // Months are 0-indexed
+        current_day = currentDate.getDate();
+        current_hour = "0" + currentDate.getHours() // redundant all od this
+        update_photo();
+      }
+  
+      prev_hour_button.addEventListener('click', () => {
+        update_hour(-1);
+      });
+  
+      next_hour_button.addEventListener('click', () => {
+        update_hour(1);
+      });
+  
+      // Initial update
+      update_photo();
+    </script>
+  </body>
 
 </html>
