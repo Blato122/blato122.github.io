@@ -65,7 +65,7 @@
         current_year = date.getFullYear();
         current_month = date.getMonth() + 1; // Months are 0-indexed
         current_day = date.getDate();
-        current_hour = (date.getHours() >= 10) ? ("0" + date.getHours()) : date.getHours(); // redundant all od this
+        current_hour = (date.getHours() < 10) ? ("0" + date.getHours()) : date.getHours(); // redundant all od this
         update_photo();
       }
   
