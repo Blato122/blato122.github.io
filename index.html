@@ -45,7 +45,8 @@
   
       let date = new Date();
       let current_year = currentDate.getFullYear();
-      let current_month = currentDate.getMonth() + 1; // Months are 0-indexed
+    //   let current_month = currentDate.getMonth() + 1; // Months are 0-indexed
+      let current_month = "march"
       let current_day = currentDate.getDate();
       let current_hour = "0" + currentDate.getHours();
   
@@ -55,6 +56,7 @@
   
       function update_photo() {
         let img_url = `${baseUrl}${currentYear}/${currentMonth}/${currentDay}/${currentHour}.jpg`;
+        console.log(img_url)
         img_element.src = img_url;
       }
   
