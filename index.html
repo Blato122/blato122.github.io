@@ -73,7 +73,9 @@
         update_hour(-1);
       });
   
-      next_hour_button.addEventListener('click', () => {
+      next_hour_button.addEventListener('click', () => { // ale cool! można godzinami przechodzić między dniami!!! ale zmienić że jak się zmniejsza na 7
+        // czy tam 6, to przenosi na ostanią godzinę poprzedniego dnia czyli 21 lib 22, nwm
+        // całkiem ez to 
         update_hour(1);
       });
   
