@@ -1,4 +1,4 @@
-.image-container {
+.gallery {
     width: 75%; /* Reduce the container's width to 75% of the original size */
 }
 
@@ -6,7 +6,7 @@
     margin: 0 auto;
 }
 
-.image-container img {
+.gallery img {
     background-color: #aaa;
     padding: 0;
     width: 100%; /* Make the image occupy 100% of the container's width */

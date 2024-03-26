@@ -46,7 +46,7 @@
       let date = new Date();
       let current_year = date.getFullYear();
     //   let current_month = currentDate.getMonth() + 1; // Months are 0-indexed
-      let current_month = "march"
+      let current_month = "march" // unhardcodify that!
       let current_day = date.getDate();
       let current_hour = (date.getHours() < 10) ? ("0" + date.getHours()) : date.getHours();
   
@@ -63,7 +63,7 @@
       function update_hour(delta) {
         date.setHours(date.getHours() + delta);
         current_year = date.getFullYear();
-        current_month = date.getMonth() + 1; // Months are 0-indexed
+        current_month = "march"//date.getMonth() + 1; // Months are 0-indexed
         current_day = date.getDate();
         current_hour = (date.getHours() < 10) ? ("0" + date.getHours()) : date.getHours(); // redundant all od this
         update_photo();
