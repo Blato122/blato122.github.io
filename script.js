@@ -71,8 +71,9 @@ let hourDisplay = document.getElementById("hour");
 slider.addEventListener("input", function() {
   // Update the display value
   hourDisplay.innerText = slider.value;
-  update_date(Number(slider.value) - Number(current_hour))
-  current_hour = slider.value
+  prev_hour = Number(current_hour)
+  current_hour = Number(slider.value)
+  update_date(current_hour - prev_hour) // clean thta up???
 });
 
 // split into 2 files???
