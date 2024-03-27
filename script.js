@@ -27,6 +27,7 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     } else {
         current = old_date;
         slider.value = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
+        hourDisplay.innerText = slider.value; // te 2 linie do jakiejś funkcji update slider czy coś?
     }
 }
 
