@@ -25,8 +25,8 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     if (current >= init && current <= today) {
         update_photo(); // hmm, does that if make sense? i mean it does but maybe we can do better thatn tahta! !! ! ! !hehehe
     } else {
-        current_date = old_date;
-        slider.value = (old_date.getHours() >= 10) ? old_date.getHours() : ("0" + old_date.getHours());
+        current = old_date;
+        slider.value = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
     }
 }
 
