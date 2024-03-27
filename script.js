@@ -23,7 +23,8 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     current_day = current_day + days;
     current_hour = hours;
 
-    let current_date = new Date(current_year, current_month - 1, current_day, current_hour)
+    let current_date = new Date(current_year, current_month - 1, current_day, current_hour);
+    console.log(current_date);
     if (current_date >= init && current_date <= today) {
         update_photo();
     }
@@ -38,11 +39,13 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
 // });
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("document: DOMContentLoaded")
     document.getElementById("gouter-time-slider").value = today.getHours();
     document.getElementById("gouter-hour").innerText = today.getHours();
 });
 
 img_element.addEventListener("error", () => {
+    console.log("img_element: error")
     img_element.src = 'image-not-found.png';
 });
 
@@ -51,9 +54,10 @@ let hourDisplay = document.getElementById("gouter-hour");
 
 // Update the display value when slider value changes
 slider.addEventListener("input", function() {
-  hourDisplay.innerText = slider.value;
-  current_hour = Number(slider.value);
-  update_date(current_hour);
+    console.log("slider: input")
+    hourDisplay.innerText = slider.value;
+    current_hour = Number(slider.value);
+    update_date(current_hour);
 });
 
 // Initial update
