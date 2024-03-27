@@ -26,7 +26,7 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     let current_date = new Date(current_year, current_month - 1, current_day, current_hour);
     console.log(current_date);
     if (current_date >= init && current_date <= today) {
-        update_photo();
+        update_photo(); // hmm, does that if make sense? i mean it does but maybe we can do better thatn tahta! !! ! ! !hehehe
     }
 }
 
@@ -38,11 +38,17 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
 //     update_date(0, 0, 1);
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("document: DOMContentLoaded")
+if (document.readyState !== 'loading') {
+    console.log("document already ready")
     document.getElementById("gouter-time-slider").value = today.getHours();
     document.getElementById("gouter-hour").innerText = today.getHours();
-});
+} else {
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("document was not ready: DOMContentLoaded")
+        document.getElementById("gouter-time-slider").value = today.getHours();
+        document.getElementById("gouter-hour").innerText = today.getHours();
+    });
+}
 
 img_element.addEventListener("error", () => {
     console.log("img_element: error")
