@@ -12,6 +12,8 @@ let current_hour = (date.getHours() < 10) ? ("0" + date.getHours()) : date.getHo
 let img_element = document.getElementById('gouter-photo');
 let prev_hour_button = document.getElementById('gouter-prev-hour');
 let next_hour_button = document.getElementById('gouter-next-hour');
+// zamiast tego to suwak z boku z godzinami, co przeskakuje o 1!
+// i wtedy nie trzeba checka czy nie wychodzi się poza 7 lub 22!
 
 function update_photo() {
     let img_url = `${base_url}${current_year}/${current_month}/${current_day}/${current_hour}.jpg`;
@@ -24,6 +26,17 @@ function update_date(hours=0, days=0, months=0, years=0) {
     current_month = current_month + months;
     current_day = current_day + days;
     current_hour = (current_hour + hours < 10) ? ("0" + current_hour + hours) : current_hour + hours; // redundant all od this
+
+    if (current_hour == "07") {
+        current_hour == 22; // idk if these will work
+        current_day -= 1;
+    }
+
+    if (current_hour == 23) {
+        current_hour == "08"
+        current_day += 1;
+    }
+
     update_photo();
 }
 
