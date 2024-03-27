@@ -18,6 +18,7 @@ let next_hour_button = document.getElementById('gouter-next-hour');
 // i wtedy nie trzeba checka czy nie wychodzi się poza 7 lub 22!
 
 function update_photo() {
+    let hour_str = (current_hour >= 10) ? current_hour : ("0" + current_hour);
     let img_url = `${base_url}${current_year}/${current_month}/${current_day}/${current_hour}.jpg`;
     console.log(img_url)
     img_element.src = img_url;
@@ -27,18 +28,7 @@ function update_date(hours=0, days=0, months=0, years=0) {
     current_year = current_year + years;
     current_month = current_month + months;
     current_day = current_day + days;
-    current_hour = (current_hour + hours < 10) ? ("0" + current_hour + hours) : current_hour + hours; // redundant all od this
-
-    if (current_hour == "07") {
-        current_hour == 22; // idk if these will work
-        current_day -= 1;
-    }
-
-    if (current_hour == 23) {
-        current_hour == "08"
-        current_day += 1;
-    }
-
+    current_hour = current_hour + hours; // redundant all od this
     update_photo();
 }
 
@@ -71,7 +61,7 @@ let hourDisplay = document.getElementById("hour");
 slider.addEventListener("input", function() {
   // Update the display value
   hourDisplay.innerText = slider.value;
-  prev_hour = Number(current_hour)
+  prev_hour = current_hour
   current_hour = Number(slider.value)
   update_date(current_hour - prev_hour) // clean thta up???
 });
