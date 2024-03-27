@@ -17,11 +17,11 @@ function update_photo() {
     img_element.src = img_url;
 }
 
-function update_date(hours=0, days=0, months=0, years=0) {
+function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     current_year = current_year + years;
     current_month = current_month + months;
     current_day = current_day + days;
-    current_hour = current_hour + hours;
+    current_hour = hours;
 
     let current_date = new Date(current_year, current_month, current_day, current_hour)
     if (current_date >= init && current_date <= today) {
@@ -30,11 +30,11 @@ function update_date(hours=0, days=0, months=0, years=0) {
 }
 
 // prev_month_button.addEventListener('click', () => {
-//     update_date(0, 0, -1, 0);
+//     update_date(0, 0, -1);
 // });
 
 // next_month_button.addEventListener('click', () => { 
-//     update_date(0, 0, 1, 0);
+//     update_date(0, 0, 1);
 // });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -52,9 +52,8 @@ let hourDisplay = document.getElementById("gouter-hour");
 // Update the display value when slider value changes
 slider.addEventListener("input", function() {
   hourDisplay.innerText = slider.value;
-  prev_hour = current_hour;
   current_hour = Number(slider.value);
-  update_date(current_hour - prev_hour);
+  update_date(current_hour);
 });
 
 // Initial update
