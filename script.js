@@ -71,7 +71,7 @@ let hourDisplay = document.getElementById("hour");
 slider.addEventListener("input", function() {
   // Update the display value
   hourDisplay.innerText = slider.value;
-  update_date(slider.value - current_hour)
+  update_date(slider.value - Number(current_hour))
   current_hour = slider.value
 });
 
