@@ -14,17 +14,12 @@ function update_photo() {
 }
 
 function update_date(hours=today.getHours(), days=0, months=0, years=0) {
-    let old_date = current;
+    let old_date = new Date(current);
 
     current.setFullYear(current.getFullYear() + years); // jak z tym indeksem, nie wiem czy to w ogole zadziala
     current.setMonth(current.getMonth() + months); // od 0 indeks w koncu? - bez znaczenia
     current.setDate(current.getDate() + days);
     current.setHours(hours);
-
-    // current_year = current_year + years;
-    // current_month = current_month + months;
-    // current_day = current_day + days;
-    // current_hour = hours;
 
     console.log(current);
     if (current >= init && current <= today) {
