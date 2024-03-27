@@ -1,3 +1,16 @@
+// Get the slider element
+let slider = document.getElementById("gouter-time-slider");
+// Get the display element
+let hourDisplay = document.getElementById("hour");
+
+// Update the display value when slider value changes
+slider.addEventListener("input", function() {
+  // Update the display value
+  hourDisplay.innerText = slider.value;
+});
+
+// split into 2 files???
+
 const base_url = 'https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/gouter/';
   
 const today = new Date(); // current date, can't go past that
