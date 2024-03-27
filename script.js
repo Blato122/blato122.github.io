@@ -63,3 +63,9 @@ slider.addEventListener("input", function() {
 update_photo();
 // time zone?
 // split into 2 files???
+
+// to do:
+// https://stackoverflow.com/questions/70983766/range-slider-avoid-moving-forward-when-reaching-a-value-specified-in-another-e
+// to u góry zamiast ograniczania sztucznie slidera
+// i może jeszcze sprawdzanie slidera w jego event listenerze zamiast w funkcji potem?
+// po co zmieniac wartosc i potem z powrotem ja przywracac? lepiej w ogole nie zmienac chyab
