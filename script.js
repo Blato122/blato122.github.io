@@ -23,7 +23,7 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     current_day = current_day + days;
     current_hour = hours;
 
-    let current_date = new Date(current_year, current_month, current_day, current_hour)
+    let current_date = new Date(current_year, current_month - 1, current_day, current_hour)
     if (current_date >= init && current_date <= today) {
         update_photo();
     }
