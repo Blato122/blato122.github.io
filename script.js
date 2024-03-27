@@ -18,6 +18,8 @@ function update_photo() {
 }
 
 function update_date(hours=today.getHours(), days=0, months=0, years=0) {
+    old_date = current_date;
+
     current_year = current_year + years;
     current_month = current_month + months;
     current_day = current_day + days;
@@ -27,6 +29,9 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     console.log(current_date);
     if (current_date >= init && current_date <= today) {
         update_photo(); // hmm, does that if make sense? i mean it does but maybe we can do better thatn tahta! !! ! ! !hehehe
+    } else {
+        current_date = old_date;
+        slider.value = (old_date.getHours() >= 10) ? old_date.getHours() : ("0" + old_date.getHours());
     }
 }
 
@@ -70,4 +75,3 @@ slider.addEventListener("input", function() {
 update_photo();
 // time zone?
 // split into 2 files???
-// usunac 26 marca bo nie ma wszystkich zdjec
