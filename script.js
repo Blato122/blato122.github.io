@@ -6,10 +6,11 @@ const today = new Date(); // current date, can't go past that
 const init = new Date('March 26, 2024 20:00:00'); // date of starting the program, can't go earlier than that
 
 let date = new Date();
+
 let current_year = date.getFullYear();
 let current_month = date.getMonth() + 1; // months are 0-indexed
 let current_day = date.getDate();
-let current_hour = (date.getHours() < 10) ? ("0" + date.getHours()) : date.getHours();
+let current_hour = date.getHours();
 
 let img_element = document.getElementById('gouter-photo');
 let prev_hour_button = document.getElementById('gouter-prev-hour');
@@ -52,6 +53,14 @@ update_photo();
 
 // into 2 files maybe idk 
 
+// JavaScript code to set the value of the range input programmatically
+document.addEventListener("DOMContentLoaded", function() {
+    // Set the value to 10
+    document.getElementById("gouter-time-slider").value = today.getHours();
+    // Update the display value
+    document.getElementById("hour").innerText = today.getHours();
+});
+
 // Get the slider element
 let slider = document.getElementById("gouter-time-slider");
 // Get the display element
@@ -67,3 +76,5 @@ slider.addEventListener("input", function() {
 });
 
 // split into 2 files???
+
+// usunac 26 marca bo nie ma wszystkich zdjec
