@@ -2,7 +2,7 @@ const base_url = 'https://raw.githubusercontent.com/blato122/mont-blanc-cam/main
   
 const today = new Date(); // current date, can't go past that
 const init = new Date('March 27, 2024 8:00:00'); // date of starting the program, can't go earlier than that
-const current = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours()); // months are 0-indexed
+let current = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours()); // months are 0-indexed
 
 let img_element = document.getElementById('gouter-photo');
 
