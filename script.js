@@ -20,11 +20,10 @@ function update_photo() {
 }
 
 function update_date(hours=0, days=0, months=0, years=0) {
-    current_year = date.getFullYear() + years;
-    current_month = date.getMonth() + months + 1; // months are 0-indexed
-    current_day = date.getDate() + days;
-    current_hour = (date.getHours() < 10) ? ("0" + date.getHours()) : date.getHours(); // redundant all od this
-    current_hour == hours;
+    current_year = current_year + years;
+    current_month = current_month + months;
+    current_day = current_day + days;
+    current_hour = (current_hour + hours < 10) ? ("0" + current_hour + hours) : current_hour + hours; // redundant all od this
     update_photo();
 }
 
