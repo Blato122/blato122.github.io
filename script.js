@@ -2,32 +2,32 @@ const base_url = 'https://raw.githubusercontent.com/blato122/mont-blanc-cam/main
   
 const today = new Date(); // current date, can't go past that
 const init = new Date('March 27, 2024 8:00:00'); // date of starting the program, can't go earlier than that
-
-let current_year = today.getFullYear();
-let current_month = today.getMonth() + 1; // months are 0-indexed
-let current_day = today.getDate();
-let current_hour = today.getHours();
+const current = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours()); // months are 0-indexed
 
 let img_element = document.getElementById('gouter-photo');
 
 function update_photo() {
-    let hour_str = (current_hour >= 10) ? current_hour : ("0" + current_hour);
-    let img_url = `${base_url}${current_year}/${current_month}/${current_day}/${hour_str}.jpg`;
+    let hour_str = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
+    let img_url = `${base_url}${current.getFullYear()}/${current.getMonth() + 1}/${current.getDate()}/${hour_str}.jpg`;
     console.log(img_url);
     img_element.src = img_url;
 }
 
 function update_date(hours=today.getHours(), days=0, months=0, years=0) {
-    old_date = current_date;
+    let old_date = current;
 
-    current_year = current_year + years;
-    current_month = current_month + months;
-    current_day = current_day + days;
-    current_hour = hours;
+    current.setFullYear(current.getFullYear() + years); // jak z tym indeksem, nie wiem czy to w ogole zadziala
+    current.setMonth(current.getMonth() + months); // od 0 indeks w koncu? - bez znaczenia
+    current.setDate(current.getDate() + days);
+    current.setHours(hours);
 
-    let current_date = new Date(current_year, current_month - 1, current_day, current_hour);
-    console.log(current_date);
-    if (current_date >= init && current_date <= today) {
+    // current_year = current_year + years;
+    // current_month = current_month + months;
+    // current_day = current_day + days;
+    // current_hour = hours;
+
+    console.log(current);
+    if (current >= init && current <= today) {
         update_photo(); // hmm, does that if make sense? i mean it does but maybe we can do better thatn tahta! !! ! ! !hehehe
     } else {
         current_date = old_date;
@@ -35,14 +35,7 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     }
 }
 
-// prev_month_button.addEventListener('click', () => {
-//     update_date(0, 0, -1);
-// });
-
-// next_month_button.addEventListener('click', () => { 
-//     update_date(0, 0, 1);
-// });
-
+// https://stackoverflow.com/questions/39993676/code-inside-domcontentloaded-event-not-working
 if (document.readyState !== 'loading') {
     console.log("document already ready")
     document.getElementById("gouter-time-slider").value = today.getHours();
@@ -67,8 +60,7 @@ let hourDisplay = document.getElementById("gouter-hour");
 slider.addEventListener("input", function() {
     console.log("slider: input")
     hourDisplay.innerText = slider.value;
-    current_hour = Number(slider.value);
-    update_date(current_hour);
+    update_date(Number(slider.value));
 });
 
 // Initial update
