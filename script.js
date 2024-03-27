@@ -1,15 +1,4 @@
-// Get the slider element
-let slider = document.getElementById("gouter-time-slider");
-// Get the display element
-let hourDisplay = document.getElementById("hour");
 
-// Update the display value when slider value changes
-slider.addEventListener("input", function() {
-  // Update the display value
-  hourDisplay.innerText = slider.value;
-});
-
-// split into 2 files???
 
 const base_url = 'https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/gouter/';
   
@@ -70,3 +59,20 @@ next_hour_button.addEventListener('click', () => { // ale cool! można godzinami
 update_photo();
 
 // time zone?
+
+// into 2 files maybe idk 
+
+// Get the slider element
+let slider = document.getElementById("gouter-time-slider");
+// Get the display element
+let hourDisplay = document.getElementById("hour");
+
+// Update the display value when slider value changes
+slider.addEventListener("input", function() {
+  // Update the display value
+  hourDisplay.innerText = slider.value;
+  update_date(slider.value - current_hour)
+  current_hour = slider.value
+});
+
+// split into 2 files???
