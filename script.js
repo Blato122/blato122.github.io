@@ -23,6 +23,10 @@ const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting th
 let current = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
 
 let img_element = document.getElementById('gouter-photo');
+let slider = document.getElementById("gouter-time-slider");
+let hour_display = document.getElementById("gouter-hour");
+let info = document.getElementById("gouter-info");
+let date = document.getElementById("gouter-date")
 
 function update_photo() {
     let hour_str = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
@@ -43,6 +47,7 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     if (current >= init && current <= today) {
         update_photo();
         info.innerText = "";
+        date.innerText = current; // !
     } else {
         current = old_date;
         slider.value = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
@@ -73,10 +78,6 @@ img_element.addEventListener("error", () => {
     console.log("img_element: error")
     img_element.src = 'image-not-found.png';
 });
-
-let slider = document.getElementById("gouter-time-slider");
-let hour_display = document.getElementById("gouter-hour");
-let info = document.getElementById("gouter-info");
 
 // Update the display value when slider value changes
 slider.addEventListener("input", function() {
@@ -117,6 +118,12 @@ next_year_button.addEventListener('click', () => {
 
 // Initial update
 update_photo();
+
+// jak na bergfex - dodać opcję pobrania historii (ale tutaj całej) z danej godziny!! i od today, dekrementując dzień, aż do init iść
+// i wyświetlić w siatce jakiejś! żeby nie tylko jedno na stronie całej było (może nowa podstona jakaś? nowa karta w sensue)
+
+// dodać tete rousse też! ale najpierw pousuwać chyba niektóre zmienne globalne. typu current i zrobić je normalnie
+// i wtedy całość jako jedna wielka funkcja z argumentem gouter/tete-rousse jako string (arg + "-prev-year" np. potem gdzie arg to gouter/tete)
 
 //  sprawdzić czy te daty CET w ogóle działają! + po zmianie czasu!
 // split into 2 files??? ale syf tu jest już
