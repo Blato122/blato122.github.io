@@ -36,7 +36,7 @@ function update_photo() {
     date.innerText = current; // date only changes when the photo changes
 }
 
-function update_date(hours=today.getHours(), days=today.getDate(), months=today.getMonth(), years=today.getFullYear()) {
+function update_date(hours=current.getHours(), days=current.getDate(), months=current.getMonth(), years=current.getFullYear()) {
     let old_date = new Date(current);
 
     current.setFullYear(years);
