@@ -67,6 +67,9 @@ if (document.readyState !== 'loading') {
 }
 
 img_element.addEventListener("error", () => {
+    if (current <= today) {
+        info.innerText = "not available yet - try again in a few minutes";
+    }
     console.log("img_element: error")
     img_element.src = 'image-not-found.png';
 });
