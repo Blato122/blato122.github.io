@@ -92,27 +92,27 @@ let prev_year_button = document.getElementById('gouter-prev-year');
 let next_year_button = document.getElementById('gouter-next-year');
 
 prev_day_button.addEventListener('click', () => {
-    update_date(0, -1);
+    update_date(current.getHours(), -1);
 });
 
 next_day_button.addEventListener('click', () => {
-    update_date(0, 1);
+    update_date(current.getHours(), 1);
 });
 
 prev_month_button.addEventListener('click', () => {
-    update_date(0, 0, -1);
+    update_date(current.getHours(), 0, -1);
 });
 
 next_month_button.addEventListener('click', () => {
-    update_date(0, 0, 1);
+    update_date(current.getHours(), 0, 1);
 });
 
 prev_year_button.addEventListener('click', () => {
-    update_date(0, 0, 0, -1);
+    update_date(current.getHours(), 0, 0, -1);
 });
 
 next_year_button.addEventListener('click', () => {
-    update_date(0, 0, 0, 1);
+    update_date(current.getHours(), 0, 0, 1);
 });
 
 // Initial update
