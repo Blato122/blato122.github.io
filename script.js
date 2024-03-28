@@ -46,7 +46,7 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     } else {
         current = old_date;
         slider.value = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
-        info.innerText = "not available";
+        info.innerText = "not available - cannot go past " + today + "or before " + init;
     }
     hour_display.innerText = slider.value;
 }
