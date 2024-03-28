@@ -95,6 +95,8 @@ let now_button = document.getElementById('gouter-now');
 
 now_button.addEventListener('click', () => {
     update_date(today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); 
+    slider.value = current.getHours();
+    hour_display.innerText = slider.value;
     // today w sumie to nie now. no ale ktoś musiałby przez 1h siedzieć na tej stronie żeby było opóźnienie
 });
 
