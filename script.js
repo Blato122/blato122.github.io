@@ -36,12 +36,12 @@ function update_photo() {
     date.innerText = current; // date only changes when the photo changes
 }
 
-function update_date(hours=today.getHours(), days=0, months=0, years=0) {
+function update_date(hours=today.getHours(), days=today.getDate(), months=today.getMonth(), years=today.getFullYear()) {
     let old_date = new Date(current);
 
-    current.setFullYear(current.getFullYear() + years);
-    current.setMonth(current.getMonth() + months);
-    current.setDate(current.getDate() + days);
+    current.setFullYear(years);
+    current.setMonth(months);
+    current.setDate(days);
     current.setHours(hours);
 
     console.log(current);
@@ -91,29 +91,35 @@ let prev_month_button = document.getElementById('gouter-prev-month');
 let next_month_button = document.getElementById('gouter-next-month');
 let prev_year_button = document.getElementById('gouter-prev-year');
 let next_year_button = document.getElementById('gouter-next-year');
+let now_button = document.getElementById('gouter-now');
+
+now_button.addEventListener('click', () => {
+    update_date(today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); 
+    // today w sumie to nie now. no ale ktoś musiałby przez 1h siedzieć na tej stronie żeby było opóźnienie
+});
 
 prev_day_button.addEventListener('click', () => {
-    update_date(current.getHours(), -1);
+    update_date(current.getHours(), current.getDate() - 1);
 });
 
 next_day_button.addEventListener('click', () => {
-    update_date(current.getHours(), 1);
+    update_date(current.getHours(), current.getDate() + 1);
 });
 
 prev_month_button.addEventListener('click', () => {
-    update_date(current.getHours(), 0, -1);
+    update_date(current.getHours(), current.getDate(), current.getMonth() - 1);
 });
 
 next_month_button.addEventListener('click', () => {
-    update_date(current.getHours(), 0, 1);
+    update_date(current.getHours(), current.getDate(), current.getMonth() + 1);
 });
 
 prev_year_button.addEventListener('click', () => {
-    update_date(current.getHours(), 0, 0, -1);
+    update_date(current.getHours(), current.getDate(), current.getMonth(), current.getFullYear() - 1);
 });
 
 next_year_button.addEventListener('click', () => {
-    update_date(current.getHours(), 0, 0, 1);
+    update_date(current.getHours(), current.getDate(), current.getMonth(), current.getFullYear() + 1);
 });
 
 // Initial update
