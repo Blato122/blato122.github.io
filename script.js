@@ -16,11 +16,11 @@ function CET_now() {
     }
 }
 
-const base_url = 'https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/gouter/';
-  
+const base_url = 'https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/gouter/'; // or tete rousse!
 const today = CET_now(); // current date, can't go past that (CET/CEST)
 const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting the program, can't go earlier than that (CET)
-let current = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
+
+let current = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours()); // make not global later
 
 let img_element = document.getElementById('gouter-photo');
 let slider = document.getElementById("gouter-time-slider");
