@@ -33,6 +33,7 @@ function update_photo() {
     let img_url = `${base_url}${current.getFullYear()}/${current.getMonth() + 1}/${current.getDate()}/${hour_str}.jpg`; // months are 0-indexed
     console.log(img_url);
     img_element.src = img_url;
+    date.innerText = current; // date only changes when the photo changes
 }
 
 function update_date(hours=today.getHours(), days=0, months=0, years=0) {
@@ -47,7 +48,6 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     if (current >= init && current <= today) {
         update_photo();
         info.innerText = "";
-        date.innerText = current; // !
     } else {
         current = old_date;
         slider.value = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
