@@ -46,7 +46,7 @@ function update_date(hours=today.getHours(), days=0, months=0, years=0) {
     } else {
         current = old_date;
         slider.value = (current.getHours() >= 10) ? current.getHours() : ("0" + current.getHours());
-        info.innerText = "not available - cannot go past " + today + "or before " + init;
+        info.innerText = "not available - cannot go past " + today + " or before " + init;
     }
     hour_display.innerText = slider.value;
 }
@@ -68,7 +68,7 @@ if (document.readyState !== 'loading') {
 
 img_element.addEventListener("error", () => {
     if (current <= today) {
-        info.innerText = "not available yet - try again in a few minutes";
+        info.innerText = "not available yet - try again in a few minutes"; // nie powinno tego wypisywać, gdy jest siódma... a brakuje zdjęcia (ale będzie już ok od 29 marca)
     }
     console.log("img_element: error")
     img_element.src = 'image-not-found.png';
@@ -84,10 +84,42 @@ slider.addEventListener("input", function() {
     update_date(Number(slider.value));
 });
 
+let prev_day_button = document.getElementById('gouter-prev-day');
+let next_day_button = document.getElementById('gouter-next-day');
+let prev_month_button = document.getElementById('gouter-prev-month');
+let next_month_button = document.getElementById('gouter-next-month');
+let prev_year_button = document.getElementById('gouter-prev-year');
+let next_year_button = document.getElementById('gouter-next-year');
+
+prev_day_button.addEventListener('click', () => {
+    update_date(0, -1);
+});
+
+next_day_button.addEventListener('click', () => {
+    update_date(0, 1);
+});
+
+prev_month_button.addEventListener('click', () => {
+    update_date(0, 0, -1);
+});
+
+next_month_button.addEventListener('click', () => {
+    update_date(0, 0, 1);
+});
+
+prev_year_button.addEventListener('click', () => {
+    update_date(0, 0, 0, -1);
+});
+
+next_year_button.addEventListener('click', () => {
+    update_date(0, 0, 0, 1);
+});
+
 // Initial update
 update_photo();
 
-// split into 2 files???
+//  sprawdzić czy te daty CET w ogóle działają! + po zmianie czasu!
+// split into 2 files??? ale syf tu jest już
 // to do:
 // https://stackoverflow.com/questions/70983766/range-slider-avoid-moving-forward-when-reaching-a-value-specified-in-another-e
 // to u góry zamiast ograniczania sztucznie slidera
