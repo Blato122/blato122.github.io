@@ -236,7 +236,7 @@ function webcam_setup(name) {
     cam.all();
     
     // initial update
-    update_photo(base_url, current[name]);
+    update_photo(cam.base_url, cam.current_date);
 }
 
 function main() {
