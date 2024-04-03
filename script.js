@@ -83,11 +83,16 @@ const SET_ALL = 0x1111;
 function update_date(cam, options, ...values) {
     let old_date = new Date(cam.current_date);
 
+    console.log(cam.current_date.getHours())
+    console.log(cam.current_date.getDate())
+    console.log(cam.current_date.getMonth())
+    console.log(cam.current_date.getFullYear())
+
     let i = 0;
     if (options & SET_HOUR) cam.current_date.setHours(values[i++]);
     if (options & SET_DAY) cam.current_date.setDate(values[i++]);
-    if (options & SET_MONTH) cam.current_date.setMonths(values[i++]);
-    if (options & SET_HOUR) cam.current_date.setFullYear(values[i]);
+    if (options & SET_MONTH) cam.current_date.setMonth(values[i++]);
+    if (options & SET_YEAR) cam.current_date.setFullYear(values[i]);
 
     console.log(values)
     console.log(cam.current_date.getHours())
@@ -126,8 +131,8 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
         this.current_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
-        console.log("lalala")
-        console.log(this.current_date);
+        // console.log("lalala")
+        // console.log(this.current_date);
     }
 
     init() {
