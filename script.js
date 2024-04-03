@@ -220,7 +220,7 @@ const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting th
 
 let cams = {
     "gouter": new Camera("gouter"),
-    "tete_rousse": new Camera("tete-rousse")
+    "tete-rousse": new Camera("tete-rousse")
 }
 
 
