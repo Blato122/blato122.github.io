@@ -126,7 +126,8 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
         this.current_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
-        console.log(this.current_date)
+        console.log("lalala")
+        console.log(this.current_date);
     }
 
     init() {
