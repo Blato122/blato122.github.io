@@ -218,11 +218,15 @@ const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting th
 //     "tete_rousse": new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours())
 // }
 
+let cams = {
+    "gouter": new Camera("gouter"),
+    "tete_rousse": new Camera("tete-rousse")
+}
+
 
 // name: gouter / tete_rousse
 function webcam_setup(name) {
     // const base_url = `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${name}/`; // or tete rousse!
-    let cam = new Camera(name); // globalne te kamery? czy jak?
 
     // cet/cest time check!
     if (today.getHours() == 6 || today.getHours() == 22) {
@@ -232,6 +236,7 @@ function webcam_setup(name) {
     //preload photos
 
     // kurde chyba obiekt kamera zrobić i w nim mieć poniższe 5 zmiennych + current datę.. - ok
+    let cam = cams[name];
 
     cam.all();
     
