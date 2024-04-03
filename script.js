@@ -85,8 +85,8 @@ function update_date(cam, options, ...values) {
 
     let i = 0;
     if (options & SET_HOUR) cam.current_date.setHours(values[i++]);
-    if (options & SET_DAY) cam.current_date.setHours(values[i++]);
-    if (options & SET_MONTH) cam.current_date.setHours(values[i++]);
+    if (options & SET_DAY) cam.current_date.setDate(values[i++]);
+    if (options & SET_MONTH) cam.current_date.setMonths(values[i++]);
     if (options & SET_HOUR) cam.current_date.setFullYear(values[i]);
 
     console.log("trying to set a new date: " + cam.current_date);
