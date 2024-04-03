@@ -220,7 +220,7 @@ const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting th
 
 let cams = {
     "gouter": new Camera("gouter"),
-    "tete-rousse": new Camera("tete-rousse")
+    "tete_rousse": new Camera("tete_rousse")
 }
 
 
@@ -246,7 +246,7 @@ function webcam_setup(name) {
 
 function main() {
     webcam_setup("gouter");
-    webcam_setup("tete-rousse")
+    webcam_setup("tete_rousse")
 }
 
 main(); // w sumie, co się dzieje jak się otworzy stronę o np. 23? które zdjęcie pokazuje?
