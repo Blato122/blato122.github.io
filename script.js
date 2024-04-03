@@ -222,11 +222,11 @@ const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting th
 // name: gouter / tete_rousse
 function webcam_setup(name) {
     // const base_url = `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${name}/`; // or tete rousse!
-    let cam = new Camera(name);
+    let cam = new Camera(name); // globalne te kamery? czy jak?
 
     // cet/cest time check!
     if (today.getHours() == 6 || today.getHours() == 22) {
-        return;
+        return; // czy wyswiwtlic cos moze?
     }
 
     //preload photos
@@ -236,7 +236,7 @@ function webcam_setup(name) {
     cam.all();
     
     // initial update
-    update_photo(cam.base_url, cam.current_date);
+    update_photo(cam);
 }
 
 function main() {
@@ -244,4 +244,5 @@ function main() {
     webcam_setup("tete-rousse")
 }
 
-main();
+main(); // w sumie, co się dzieje jak się otworzy stronę o np. 23? które zdjęcie pokazuje?
+// zdjęcia z danego dnia pobeirać do tablicy i z niej wystiwltac?
