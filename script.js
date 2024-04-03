@@ -166,34 +166,34 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         let now_button = document.getElementById(this.name + '-now');
         
         now_button.addEventListener('click', () => {
-            update_date(this.base_url, this.current_date, SET_ALL, today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); 
+            update_date(this, SET_ALL, today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); 
             this.slider.value = this.current_date.getHours();
             this.hour_display.innerText = this.slider.value;
             // today w sumie to nie now. no ale ktoś musiałby przez 1h siedzieć na tej stronie żeby było opóźnienie
         });
         
         prev_day_button.addEventListener('click', () => {
-            update_date(this.base_url, SET_DAY, this.current_date.getDate() - 1);
+            update_date(this, SET_DAY, this.current_date.getDate() - 1); // zamist this to dac te funkcje do tej klasy!!!!!!! po prostu
         });
         
         next_day_button.addEventListener('click', () => {
-            update_date(this.base_url, SET_DAY, this.current_date.getDate() + 1);
+            update_date(this, SET_DAY, this.current_date.getDate() + 1);
         });
         
         prev_month_button.addEventListener('click', () => {
-            update_date(this.base_url, SET_MONTH, this.current_date.getMonth() - 1);
+            update_date(this, SET_MONTH, this.current_date.getMonth() - 1);
         });
         
         next_month_button.addEventListener('click', () => {
-            update_date(this.base_url, SET_MONTH, this.current_date.getMonth() + 1);
+            update_date(this, SET_MONTH, this.current_date.getMonth() + 1);
         });
         
         prev_year_button.addEventListener('click', () => {
-            update_date(this.base_url, SET_YEAR, this.current_date.getFullYear() - 1);
+            update_date(this, SET_YEAR, this.current_date.getFullYear() - 1);
         });
         
         next_year_button.addEventListener('click', () => {
-            update_date(this.base_url, SET_YEAR, this.current_date.getFullYear() + 1);
+            update_date(this, SET_YEAR, this.current_date.getFullYear() + 1);
         });
     }
 
@@ -241,7 +241,7 @@ function webcam_setup(name) {
     cam.all();
     
     // initial update
-    update_photo(cam);
+    update_photo(cam); // clean that up?
 }
 
 function main() {
