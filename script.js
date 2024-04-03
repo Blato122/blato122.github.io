@@ -152,7 +152,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         // update when slider value changes
         this.slider.addEventListener("input", function() {  // podać tutaj nazwę kamery!!!
             console.log("slider: input")
-            update_date(this.base_url, Number(this.slider.value));
+            update_date(this, SET_HOUR, Number(this.slider.value));
         });
     }
 
