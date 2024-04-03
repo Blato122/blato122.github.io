@@ -67,7 +67,7 @@ function update_photo(cam) {
     let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
     console.log("displaying image: " + img_url);
     cam.img_element.src = img_url;
-    cam.date.innerText = current_date; // date only changes when the photo changes
+    cam.date.innerText = cam.current_date; // date only changes when the photo changes
 }
 
 // 0x vs 0b???
@@ -143,7 +143,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
     setup_misc() {
         this.img_element.addEventListener("error", () => {
             if (this.current_date <= today) {
-                info.innerText = "not available yet - try again in a few minutes"; // nie powinno tego wypisywać, gdy jest siódma... a brakuje zdjęcia (ale będzie już ok od 29 marca)
+                this.info.innerText = "not available yet - try again in a few minutes"; // nie powinno tego wypisywać, gdy jest siódma... a brakuje zdjęcia (ale będzie już ok od 29 marca)
             }
             console.log("img_element: error")
             this.img_element.src = 'image-not-found.png';
