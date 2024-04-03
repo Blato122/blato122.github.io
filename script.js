@@ -31,7 +31,7 @@ function preloadImages(array, waitForOtherResources, timeout) {
     if (!waitForOtherResources || document.readyState === 'complete') {
         loadNow();
     } else {
-        window.addEventListener("load", function() {
+        window.addEventListener("load", () => {
             clearTimeout(timer);
             loadNow();
         });
@@ -131,7 +131,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
             document.getElementById(this.name + "-hour").innerText = today.getHours();
             document.getElementById(this.name + "-info").innerText = "";
         } else {
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', () => {
                 console.log("document was not ready: DOMContentLoaded")
                 document.getElementById(this.name + "-time-slider").value = today.getHours();
                 document.getElementById(this.name + "-hour").innerText = today.getHours();
@@ -150,7 +150,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         });
         
         // update when slider value changes
-        this.slider.addEventListener("input", function() {  // podać tutaj nazwę kamery!!!
+        this.slider.addEventListener("input", () => {  // podać tutaj nazwę kamery!!!
             console.log("slider: input")
             update_date(this, SET_HOUR, Number(this.slider.value));
         });
