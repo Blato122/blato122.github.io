@@ -89,6 +89,12 @@ function update_date(cam, options, ...values) {
     if (options & SET_MONTH) cam.current_date.setMonths(values[i++]);
     if (options & SET_HOUR) cam.current_date.setFullYear(values[i]);
 
+    console.log(values)
+    console.log(cam.current_date.getHours())
+    console.log(cam.current_date.getDate())
+    console.log(cam.current_date.getMonth())
+    console.log(cam.current_date.getFullYear())
+    
     console.log("trying to set a new date: " + cam.current_date);
     if (cam.current_date >= init && cam.current_date <= today) {
         update_photo(cam);
@@ -120,6 +126,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
         this.current_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
+        console.log(this.current_date)
     }
 
     init() {
