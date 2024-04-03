@@ -98,7 +98,7 @@ function update_date(cam, options, ...values) {
         cam.slider.value = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
         cam.info.innerText = "not available - cannot go past " + today + " or before " + init;
     }
-    cam.hour_display.innerText = slider.value;
+    cam.hour_display.innerText = cam.slider.value;
 }
 
 //  sprawdzić czy te daty CET w ogóle działają! + po zmianie czasu!
