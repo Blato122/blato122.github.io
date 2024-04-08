@@ -55,11 +55,11 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
         // create a photo grid
         for (let i = 0; i < rows; ++i) {
-            let row = document.createElement('div');
+            let row = history.document.createElement('div');
             row.classList.add('row');
         
             for (let j = 0; j < cols; j++) {
-                let col = document.createElement('div');
+                let col = history.document.createElement('div');
                 col.classList.add('col');
         
                 let idx = i * cols + j;
