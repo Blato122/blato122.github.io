@@ -1,8 +1,82 @@
-// to do
-// jak na bergfex - dodać opcję pobrania historii (ale tutaj całej) z danej godziny!! i od today, dekrementując dzień, aż do init iść
-// i wyświetlić w siatce jakiejś! żeby nie tylko jedno na stronie całej było (może nowa podstona jakaś? nowa karta w sensue)
-function display_history(days) {
+const HISTORY_URL = 'https://blato122.github.io/history.html';
 
+function handleDateSelection() {
+    // jakos obslugiwac to, jak sie nie wybierze nic!!!!!!!
+    let start_date_picker = document.getElementById('start-date-picker');
+    let end_date_picker = document.getElementById('end-date-picker');
+    let start_date = new Date(start_date_picker.value);
+    let end_date = new Date(end_date_picker.value);
+
+    let gouter_picker = document.getElementById('gouter-picker');
+    let tete_rousse_picker = document.getElementById('tete_rousse-picker');
+    let cam = undefined;
+
+    if (tete_rousse_picker.checked) {
+        cam = tete_rousse_picker.value;
+    } else if (gouter_picker.checked) {
+        cam = gouter_picker.value;
+    } else {
+        return; // nothing checked
+    }
+
+    display_history(cam, start_date, end_date);
+}
+
+// default zakres ustawić na 60 dni np!
+function display_history(cam, start_date, end_date) { // end - późniejsza data, start - wcześniejsza data, ale idziemy od końca
+    elements = []
+    let current_date = new Date(end_date); // zadziała taki konstruktor?
+    while (current_date >= start_date) { // if the start date is less than end date, won't even start
+        console.log("current date: " + current_date);
+
+        current_date.setDate(current_date.getDate() + 1);
+        
+        // define outside? but init with what?
+        let hour_str = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
+        let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
+
+        elements.push({
+            "url": img_url,
+            "date": cam.current_date
+        });
+    }
+    // wklej days x img + data do diva ktory juz jest
+    // ladnie wyswietl w siatce
+    // i podpisz data
+    let history = window.open(HISTORY_URL); // ale ten open jako jakiś onclick chyba ma być! po wybraniu daty
+
+    // Ensure the document is fully loaded before manipulating
+    history.onload = ((elements) => {
+        let photo_grid = history.document.getElementById('photo_grid');
+
+        let n_elements = len(elements);
+        let cols = (n_elements < 5) ? n_elements : 5;
+        let rows = Math.ceil(n_elements / cols);
+
+        // create a photo grid
+        for (let i = 0; i < rows; ++i) {
+            let row = document.createElement('div');
+            row.classList.add('row');
+        
+            for (let j = 0; j < cols; j++) {
+                let col = document.createElement('div');
+                col.classList.add('col');
+        
+                let idx = i * cols + j;
+                if (idx < n_elements) { // so that we don't try to access some other stuff when there are less than `cols` elements in the last row
+                    let img = history.document.createElement('img');
+                    img.src = elements[idx]["url"];
+
+                    let date = history.document.createElement('div'); // czy 'p'??
+                    date.innerText = elements[idx]["date"];
+                }
+        
+                row.appendChild(col);
+            }
+        
+            photo_grid.appendChild(row);
+        }
+    });
 }
 
 function CET_CEST_now() {
@@ -23,11 +97,16 @@ function CET_CEST_now() {
     }
 }
 
+// dok to :)
+
+let preloaded_images = []
+
 function preloadImages(array, waitForOtherResources, timeout) {
-    let loaded = false, list = preloadImages.list, imgs = array.slice(0), t = timeout || 15*1000, timer;
-    if (!preloadImages.list) {
-        preloadImages.list = [];
-    }
+    let loaded = false;
+    let imgs = array.slice(0); 
+    let t = timeout || 15*1000;
+    let timer;
+
     if (!waitForOtherResources || document.readyState === 'complete') {
         loadNow();
     } else {
@@ -90,7 +169,14 @@ function update_date(cam, options, ...values) {
 
     let i = 0;
     if (options & SET_HOUR) cam.current_date.setHours(values[i++]);
-    if (options & SET_DAY) cam.current_date.setDate(values[i++]);
+    if (options & SET_DAY) {
+        cam.current_date.setDate(values[i++]);
+        // preloadImages()
+
+
+
+        // finish that!!!
+    }
     if (options & SET_MONTH) cam.current_date.setMonth(values[i++]);
     if (options & SET_YEAR) cam.current_date.setFullYear(values[i]);
 

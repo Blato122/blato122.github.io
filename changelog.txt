@@ -1,7 +1,16 @@
-3.04.2024:
-- cron cet/cest fix
+03.04.2024:
+- cron cet/cest fix (?)
 - refactoring
 - tete rousse
 
+08.04.2024:
+- 
+
+xx.04.2024:
 - history display
 - image preloading
+
+to do:
+- jednak zrobić tak, żeby nie pokazywało niepobranych zdjęć (to image-not-found)
+- zamiast obsługi cet/cest w pythonie, to zrobić to w github actions już
+- nie pokazuje zdjęć między 22 a 6!
