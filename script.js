@@ -46,9 +46,10 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
     let history = window.open(HISTORY_URL); // ale ten open jako jakiś onclick chyba ma być! po wybraniu daty
 
     // Ensure the document is fully loaded before manipulating
-    history.onload = ((elements) => {
+    history.onload = (elements) => {
         let photo_grid = history.document.getElementById('photo_grid');
 
+        console.log(elements);
         let n_elements = elements.length;
         let cols = (n_elements < 5) ? n_elements : 5;
         let rows = Math.ceil(n_elements / cols);
@@ -69,6 +70,9 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
                     let date = history.document.createElement('div'); // czy 'p'??
                     date.innerText = elements[idx]["date"];
+
+                    col.appendChild(img);
+                    col.appendChild(date);
                 }
         
                 row.appendChild(col);
@@ -76,7 +80,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
         
             photo_grid.appendChild(row);
         }
-    });
+    };
 }
 
 function CET_CEST_now() {
