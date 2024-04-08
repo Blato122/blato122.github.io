@@ -1,6 +1,6 @@
 const HISTORY_URL = 'https://blato122.github.io/history.html';
 
-function handleDateSelection() {
+function history_handler() {
     // jakos obslugiwac to, jak sie nie wybierze nic!!!!!!!
     let start_date_picker = document.getElementById('start-date-picker');
     let end_date_picker = document.getElementById('end-date-picker');
