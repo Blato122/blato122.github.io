@@ -49,7 +49,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
     history.onload = ((elements) => {
         let photo_grid = history.document.getElementById('photo_grid');
 
-        let n_elements = len(elements);
+        let n_elements = elements.length;
         let cols = (n_elements < 5) ? n_elements : 5;
         let rows = Math.ceil(n_elements / cols);
 
