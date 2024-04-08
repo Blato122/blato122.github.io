@@ -29,7 +29,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
     while (current_date >= start_date) { // if the start date is less than end date, won't even start
         console.log("current date: " + current_date);
 
-        current_date.setDate(current_date.getDate() + 1);
+        current_date.setDate(current_date.getDate() - 1);
         
         // define outside? but init with what?
         let hour_str = (current_date.getHours() >= 10) ? current_date.getHours() : ("0" + current_date.getHours());
