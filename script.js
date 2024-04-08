@@ -32,12 +32,12 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
         current_date.setDate(current_date.getDate() + 1);
         
         // define outside? but init with what?
-        let hour_str = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
-        let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
+        let hour_str = (current_date.getHours() >= 10) ? current_date.getHours() : ("0" + current_date.getHours());
+        let img_url = `${cams[cam].base_url}${cams[cam].current_date.getFullYear()}/${cams[cam].current_date.getMonth() + 1}/${cams[cam].current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
 
         elements.push({
             "url": img_url,
-            "date": cam.current_date
+            "date": current_date
         });
     }
     // wklej days x img + data do diva ktory juz jest
