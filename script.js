@@ -45,28 +45,28 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
     // tam, gdzie nie ma historii, dać error img!!!
     history.onload = () => {
-        let photo_grid = document.getElementById('photo_grid'); // BEZ history.document!!!
+        let photo_grid = history.document.getElementById('photo_grid');
 
-        console.log(this.elements); // Z this. !!!
+        console.log(this.elements);
         let n_elements = this.elements.length;
         let cols = (n_elements < 5) ? n_elements : 5;
         let rows = Math.ceil(n_elements / cols);
 
         // create a photo grid
         for (let i = 0; i < rows; ++i) {
-            let row = document.createElement('div');
+            let row = history.document.createElement('div');
             row.classList.add('row');
         
             for (let j = 0; j < cols; j++) {
-                let col = document.createElement('div');
+                let col = history.document.createElement('div');
                 col.classList.add('col');
         
                 let idx = i * cols + j;
                 if (idx < n_elements) { // so that we don't try to access some other stuff when there are less than `cols` elements in the last row
-                    let img = document.createElement('img');
+                    let img = history.document.createElement('img');
                     img.src = this.elements[idx]["url"];
 
-                    let date = document.createElement('div'); // czy 'p'??
+                    let date = history.document.createElement('div'); // czy 'p'??
                     date.innerText = this.elements[idx]["date"];
 
                     col.appendChild(img);
