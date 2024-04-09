@@ -8,6 +8,11 @@ function history_handler() {
     let end_date = new Date(end_date_picker.value);
 
     let hour_picker = document.getElementById('hour-picker');
+
+    if (hour_picker.value < 7 || hour_picker.value > 21) {
+        return; // bad practice??!?!?!?! early return
+    }
+
     start_date.setHours(hour_picker.value);
     end_date.setHours(hour_picker.value)
 
@@ -72,7 +77,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
                     img.addEventListener("error", () => {
                         console.log("history img: error")
-                        this.img_element.src = 'image-not-found.png';
+                        this.img_element.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
                     });
 
                     let date = history.document.createElement('div'); // czy 'p'??
