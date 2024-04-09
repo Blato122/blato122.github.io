@@ -12,6 +12,8 @@ xx.04.2024:
 - odwrócić daty (najpierw end, potem start)
 - inaczej wybierać godzinę, nie wybierać minut (wybór godziny tylko raz i od 7 do 21)
 - default wartości dla daty i godziny (current)
+- obsługa tego błędu ssl może?
+- checkbox zamiast radio, a najlepiej lista z wyborem, bo nie da się na raz 2 okien otworzyć!!!
 
 
 xx.04.2024:
