@@ -20,11 +20,10 @@
 
  /* ? */
  .col div {
-    margin-top: 8px;
     width: 100%;
     padding: 10px;
  }
- 
+
  /* ? */
  @media screen and (max-width: 800px) {
     .inner-grid {

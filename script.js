@@ -37,7 +37,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
         elements.push({
             "url": img_url,
-            "date": current_date
+            "date": current_date.toLocaleString() // so that is takes up less space and is more readable
         });
     }
 
