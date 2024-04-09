@@ -22,7 +22,7 @@ function history_handler() {
     display_history(cam, start_date, end_date);
 }
 
-// default zakres ustawić na 60 dni np!
+// default zakres ustawić na 60 dni np! i default godzina jako ta current
 function display_history(cam, start_date, end_date) { // end - późniejsza data, start - wcześniejsza data, ale idziemy od końca
     elements = []
     let current_date = new Date(end_date); // zadziała taki konstruktor?

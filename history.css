@@ -1,0 +1,42 @@
+/* https://www.tutorialspoint.com/how-to-create-a-responsive-image-grid-with-html-and-css */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+ }
+ 
+ .col {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+ }
+ 
+ .col img {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+ }
+
+ /* ? */
+ .col div {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+ }
+ 
+ /* ? */
+ @media screen and (max-width: 800px) {
+    .inner-grid {
+       flex: 50%;
+       max-width: 50%;
+    }
+ }
+
+ /* ? */
+ @media screen and (max-width: 600px) {
+    .inner-grid {
+       flex: 100%;
+       max-width: 100%;
+    }
+ }
