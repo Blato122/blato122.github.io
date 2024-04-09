@@ -7,6 +7,10 @@ function history_handler() {
     let start_date = new Date(start_date_picker.value);
     let end_date = new Date(end_date_picker.value);
 
+    let hour_picker = document.getElementById('hour-picker');
+    start_date.setHours(hour_picker.value);
+    end_date.setHours(hour_picker.value)
+
     let gouter_picker = document.getElementById('gouter-picker');
     let tete_rousse_picker = document.getElementById('tete_rousse-picker');
     let cam = undefined;

@@ -12,18 +12,20 @@
 </head>
 
 <body>
-    <p>select camera:</p>
+    <div class="history">
+        <input type="radio" id="gouter-picker" name="gouter-picker" value="gouter">
+        <label for="gouter">Goûter</label><br>
+        <input type="radio" id="tete_rousse-picker" name="tete_rousse-picker" value="tete_rousse">
+        <label for="tete_rousse">Tête Rousse</label><br>
 
-    <input type="radio" id="gouter-picker" name="cam-picker" value="gouter">
-    <label for="gouter">Goûter</label><br>
-    <input type="radio" id="tete_rousse-picker" name="cam-picker" value="tete_rousse">
-    <label for="tete_rousse">Tête Rousse</label><br>
-
-    <input type="datetime-local" id="start-date-picker">
-    <input type="datetime-local" id="end-date-picker">
-    <!-- maybe later change cam choice to one of two options (click to show options) -->
-    <button onclick="history_handler()">display history (enter dates in CST/CEST!!!)</button>
-    <!-- on klika dac do jsa? -->
+        <input type="date" id="start-date-picker" name="start-date-picker">
+        <input type="date" id="end-date-picker" name="end-date-picker">
+        <!-- default value dla hour picker! -->
+        <input type="number" id="hour-picker" name="hour-picker" min="7" max="21">
+        <!-- maybe later change cam choice to one of two options (click to show options) -->
+        <button onclick="history_handler()">Display history (enter CST/CEST timezone dates!)</button>
+        <!-- on klika dac do jsa? -->
+    </div>
 
     <div class="gallery">
         <p>Goûter camera photo</p>

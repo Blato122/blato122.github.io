@@ -1,15 +1,21 @@
 03.04.2024:
-- cron cet/cest fix (?)
+- cron cet/cest fix (? - see todo)
 - refactoring
 - tete rousse
 
+09.04.2024:
+- history display
+- minor changes (history date selection)
+- github action fix (exception catch)
+
 xx.04.2024:
-- trick z this res w history display (https://stackoverflow.com/questions/48881130/access-outside-variable-inside-a-internal-function-typescript)
 - odwrócić daty (najpierw end, potem start)
 - inaczej wybierać godzinę, nie wybierać minut (wybór godziny tylko raz i od 7 do 21)
 
+
+
 xx.04.2024:
-- history display
+
 - image preloading
 
 to do:
