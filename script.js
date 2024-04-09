@@ -40,17 +40,14 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
             "date": current_date
         });
     }
-    // wklej days x img + data do diva ktory juz jest
-    // ladnie wyswietl w siatce
-    // i podpisz data
-    let history = window.open(HISTORY_URL); // ale ten open jako jakiś onclick chyba ma być! po wybraniu daty
 
-    // Ensure the document is fully loaded before manipulating
-    history.onload = (elements) => {
+    let history = window.open(HISTORY_URL);
+
+    history.onload = () => {
         let photo_grid = history.document.getElementById('photo_grid');
 
-        console.log(elements);
-        let n_elements = elements.length;
+        console.log(this.elements);
+        let n_elements = this.elements.length;
         let cols = (n_elements < 5) ? n_elements : 5;
         let rows = Math.ceil(n_elements / cols);
 
@@ -66,10 +63,10 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
                 let idx = i * cols + j;
                 if (idx < n_elements) { // so that we don't try to access some other stuff when there are less than `cols` elements in the last row
                     let img = history.document.createElement('img');
-                    img.src = elements[idx]["url"];
+                    img.src = this.elements[idx]["url"];
 
                     let date = history.document.createElement('div'); // czy 'p'??
-                    date.innerText = elements[idx]["date"];
+                    date.innerText = this.elements[idx]["date"];
 
                     col.appendChild(img);
                     col.appendChild(date);
