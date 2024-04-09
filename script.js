@@ -77,8 +77,8 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
                     img.addEventListener("error", () => {
                         console.log("history img: error")
-                        this.img_element.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
-                    });
+                        this.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
+                    }); // why is img visible as img here..? maybe this better
 
                     let date = history.document.createElement('div'); // czy 'p'??
                     date.innerText = this.elements[idx]["date"];
