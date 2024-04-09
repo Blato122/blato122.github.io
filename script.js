@@ -20,15 +20,16 @@ function history_handler() {
     let tete_rousse_picker = document.getElementById('tete_rousse-picker');
     let cam = undefined;
 
+    let checked = [];
     if (tete_rousse_picker.checked) {
-        cam = tete_rousse_picker.value;
+        checked.push(tete_rousse_picker.value);
     } else if (gouter_picker.checked) {
-        cam = gouter_picker.value;
-    } else {
-        return; // nothing checked
+        checked.push(gouter_picker.value);
     }
 
-    display_history(cam, start_date, end_date);
+    for (cam in checked) {
+        display_history(cam, start_date, end_date);
+    }
 }
 
 // default zakres ustawić na 60 dni np! i default godzina jako ta current
@@ -77,8 +78,8 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
                     img.addEventListener("error", () => {
                         console.log("history img: error")
-                        this.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
-                    }); // why is img visible as img here..? maybe this better
+                        img.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
+                    }); // why is img visible as img here..?
 
                     let date = history.document.createElement('div'); // czy 'p'??
                     date.innerText = this.elements[idx]["date"];

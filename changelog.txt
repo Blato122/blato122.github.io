@@ -21,4 +21,4 @@ xx.04.2024:
 to do:
 - jednak zrobić tak, żeby nie pokazywało niepobranych zdjęć (to image-not-found)
 - zamiast obsługi cet/cest w pythonie, to zrobić to w github actions już
-- nie pokazuje zdjęć między 22 a 6!
+- nie pokazuje zdjęć między 22 a 6! niech pokazuje wtedy nie not found, a zdjęcie z 7 lub 21
