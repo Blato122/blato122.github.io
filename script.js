@@ -70,6 +70,11 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
                     let img = history.document.createElement('img');
                     img.src = this.elements[idx]["url"];
 
+                    img.addEventListener("error", () => {
+                        console.log("history img: error")
+                        this.img_element.src = 'image-not-found.png';
+                    });
+
                     let date = history.document.createElement('div'); // czy 'p'??
                     date.innerText = this.elements[idx]["date"];
 
@@ -334,7 +339,7 @@ function webcam_setup(name) {
     // const base_url = `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${name}/`; // or tete rousse!
 
     // cet/cest time check!
-    if (today.getHours() == 6 || today.getHours() == 22) {
+    if (today.getHours() == 6 || today.getHours() == 22) { // < i > raczej... jak już
         return; // czy wyswiwtlic cos moze?
     }
 
