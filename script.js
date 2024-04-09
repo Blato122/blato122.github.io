@@ -18,7 +18,6 @@ function history_handler() {
 
     let gouter_picker = document.getElementById('gouter-picker');
     let tete_rousse_picker = document.getElementById('tete_rousse-picker');
-    let cam = undefined;
 
     let checked = [];
     if (tete_rousse_picker.checked) {
@@ -27,8 +26,8 @@ function history_handler() {
         checked.push(gouter_picker.value);
     }
 
-    for (cam in checked) {
-        display_history(cam, start_date, end_date);
+    for (var i = 0; i < checked.length; ++i) {
+        display_history(checked[i], start_date, end_date);
     }
 }
 
