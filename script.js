@@ -1,7 +1,7 @@
 const HISTORY_URL = 'https://blato122.github.io/history.html';
 
 function history_handler() {
-    // jakos obslugiwac to, jak sie nie wybierze nic!!!!!!!
+    // jakos obslugiwac to, jak sie nie wybierze nic!!!!!!! (?)
     let start_date_picker = document.getElementById('start-date-picker');
     let end_date_picker = document.getElementById('end-date-picker');
     let start_date = new Date(start_date_picker.value);
@@ -22,7 +22,8 @@ function history_handler() {
     let checked = [];
     if (tete_rousse_picker.checked) {
         checked.push(tete_rousse_picker.value);
-    } else if (gouter_picker.checked) {
+    } 
+    if (gouter_picker.checked) {
         checked.push(gouter_picker.value);
     }
 
@@ -34,7 +35,7 @@ function history_handler() {
 // default zakres ustawić na 60 dni np! i default godzina jako ta current
 function display_history(cam, start_date, end_date) { // end - późniejsza data, start - wcześniejsza data, ale idziemy od końca
     elements = []
-    let current_date = new Date(end_date); // zadziała taki konstruktor?
+    let current_date = new Date(end_date);
     while (current_date >= start_date) { // if the start date is less than end date, won't even start
         console.log("current date: " + current_date);
 
@@ -52,7 +53,6 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
 
     let history = window.open(HISTORY_URL);
 
-    // tam, gdzie nie ma historii, dać error img!!!
     history.onload = () => {
         let photo_grid = history.document.getElementById('photo_grid');
 
@@ -78,7 +78,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
                     img.addEventListener("error", () => {
                         console.log("history img: error")
                         img.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
-                    }); // why is img visible as img here..?
+                    });
 
                     let date = history.document.createElement('div'); // czy 'p'??
                     date.innerText = this.elements[idx]["date"];
@@ -113,7 +113,7 @@ function CET_CEST_now() {
     }
 }
 
-// dok to :)
+// dok to :) poniżej
 
 let preloaded_images = []
 
@@ -350,9 +350,7 @@ function webcam_setup(name) {
 
     //preload photos
 
-    // kurde chyba obiekt kamera zrobić i w nim mieć poniższe 5 zmiennych + current datę.. - ok
     let cam = cams[name];
-
     cam.all();
     
     // initial update

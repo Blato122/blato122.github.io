@@ -11,7 +11,7 @@
 xx.04.2024:
 - odwrócić daty (najpierw end, potem start)
 - inaczej wybierać godzinę, nie wybierać minut (wybór godziny tylko raz i od 7 do 21)
-
+- default wartości dla daty i godziny (current)
 
 
 xx.04.2024:
