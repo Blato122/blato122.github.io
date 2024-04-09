@@ -33,7 +33,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
         
         // define outside? but init with what?
         let hour_str = (current_date.getHours() >= 10) ? current_date.getHours() : ("0" + current_date.getHours());
-        let img_url = `${cams[cam].base_url}${cams[cam].current_date.getFullYear()}/${cams[cam].current_date.getMonth() + 1}/${cams[cam].current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
+        let img_url = `${cams[cam].base_url}${current_date.getFullYear()}/${current_date.getMonth() + 1}/${current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
 
         elements.push({
             "url": img_url,
