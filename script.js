@@ -79,9 +79,6 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
                     img.addEventListener("error", () => {
                         console.log("history img: error")
                         img.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
-                        // unhardcodify!!
-                        img.width = 183;
-                        img.height = 103;
                     });
 
                     let date = history.document.createElement('div'); // czy 'p'??
@@ -265,6 +262,10 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
                 this.info.innerText = "not available yet - try again in a few minutes"; // nie powinno tego wypisywać, gdy jest siódma... a brakuje zdjęcia (ale będzie już ok od 29 marca)
             }
             console.log("img_element: error")
+            // unhardcodify!! or delete
+            this.img_element.width = 183;
+            this.img_element.height = 103;
+            
             this.img_element.src = 'image-not-found.png';
         });
         
