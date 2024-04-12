@@ -79,6 +79,9 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
                     img.addEventListener("error", () => {
                         console.log("history img: error")
                         img.src = '../image-not-found.png'; // RELATIVE PATH!!! change that to absoulte or sth???s
+                        // unhardcodify!!
+                        img.width = 183;
+                        img.height = 103;
                     });
 
                     let date = history.document.createElement('div'); // czy 'p'??
