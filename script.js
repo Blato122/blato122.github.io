@@ -57,8 +57,9 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
         let photo_grid = history.document.getElementById('photo_grid');
 
         console.log(this.elements);
+        const ROW_LEN = 3;
         let n_elements = this.elements.length;
-        let cols = (n_elements < 5) ? n_elements : 5;
+        let cols = (n_elements < ROW_LEN) ? n_elements : ROW_LEN;
         let rows = Math.ceil(n_elements / cols);
 
         // create a photo grid
