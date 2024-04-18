@@ -141,28 +141,31 @@ function CET_CEST_now() {
 // chyba że słownik znowu
 let preloaded_images_day = {}
 
-function preload_images(cam) {
+function preload_images() {
     // wyczyścić tablicę przed rozpoczęciem?
     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
 
-    // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
-    if (!preloaded_images_day[cam]) {
-        preloaded_images_day[cam] = [];
-    }
+    for (let i = 0; i < cams.length; ++i) {
+        let cam = cams[i];
+        // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
+        if (!preloaded_images_day[cam]) {
+            preloaded_images_day[cam] = [];
+        }
 
-    let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
-    preloaded_images_day[cam].length = 0; // xd
-    for (let i = 7; i <= 21; i++) {
-        let hour_str = (i >= 10) ? i : ("0" + i);
-        let img = new Image();
-        // ten listener już jest
-        // img.onerror = function() { // a nie arrow fncion?
-        //     img.src = 'image-not-found.png'; 
-        // };
-        img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-        preloaded_images_day[cam].push(img); // src czy url czy co
+        let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
+        preloaded_images_day[cam].length = 0; // xd
+        for (let i = 7; i <= 21; i++) {
+            let hour_str = (i >= 10) ? i : ("0" + i);
+            let img = new Image();
+            // ten listener już jest
+            // img.onerror = function() { // a nie arrow fncion?
+            //     img.src = 'image-not-found.png'; 
+            // };
+            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
+            preloaded_images_day[cam].push(img); // src czy url czy co
+        }
     }
-    console.log(preloaded_images_day[cam]);
+    console.log(preloaded_images_day);
 }
 
 function update_photo(cam) {
@@ -200,7 +203,7 @@ function update_date(cam, options, ...values) {
     if (options & SET_YEAR) cam.current_date.setFullYear(values[i]);
 
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
-        preload_images(cam);
+        preload_images();
     }
 
     // console.log(values)
