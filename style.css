@@ -151,3 +151,19 @@ button.active {
     font-weight: bold;
     text-align: center;
 }
+
+.history {
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    text-align: center; /* Align text center */
+    /* Add additional styling as needed */
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Set height to full viewport height */
+}
