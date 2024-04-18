@@ -134,58 +134,34 @@ function CET_CEST_now() {
 }
 
 // dok to :) poniżej
+// dodać full photo on click! i tu i w history
 
+// zawiera wszystkie zdjęcia z danego dnia
+// tylko offset o 7 trzeba, no bo zdjęcie z 7 godziny jest na indeksie 0
+// chyba że słownik znowu
 let preloaded_images_day = []
 
-function preload_images(url) {
+function preload_images(url_no_hour) {
+    // wyczyścić tablicę przed rozpoczęciem?
+    // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
+    preloaded_images_day.length = 0; // xd
     for (let i = 7; i <= 21; i++) {
-
+        let hour_str = (i >= 10) ? i : ("0" + i);
+        let img = new Image();
+        img.onerror = function() { // a nie arrow fncion?
+            img.src = 'image-not-found.png'; 
+        };
+        img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
+        preloaded_images_day.push(img); // src czy url czy co
     }
+    console.log(preloaded_images_day);
 }
-
-function preloadImages(array, waitForOtherResources, timeout) {
-    let loaded = false;
-    let imgs = array.slice(0); 
-    let t = timeout || 15*1000;
-    let timer;
-
-    if (!waitForOtherResources || document.readyState === 'complete') {
-        loadNow();
-    } else {
-        window.addEventListener("load", () => {
-            clearTimeout(timer);
-            loadNow();
-        });
-        // in case window.addEventListener doesn't get called (sometimes some resource gets stuck)
-        // then preload the images anyway after some timeout time
-        timer = setTimeout(loadNow, t);
-    }
-
-    function loadNow() {
-        if (!loaded) {
-            loaded = true;
-            for (let i = 0; i < imgs.length; i++) {
-                let img = new Image();
-                img.onload = img.onerror = img.onabort = function() {
-                    let index = list.indexOf(this);
-                    if (index !== -1) {
-                        // remove image from the array once it's loaded
-                        // for memory consumption reasons
-                        list.splice(index, 1);
-                    }
-                }
-                list.push(img);
-                img.src = imgs[i];
-            }
-        }
-    }
-}
-
-///
 
 function update_photo(cam) {
-    let hour_str = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
-    let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
+    // let hour_str = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
+    // let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
+    let hour = cam.current_date.getHours();
+    let img_url = preloaded_images_day[hour-7].src; // 7.00 to indeks 0
     console.log("displaying image: " + img_url);
     cam.img_element.src = img_url;
     cam.date.innerText = cam.current_date; // date only changes when the photo changes
@@ -211,16 +187,14 @@ function update_date(cam, options, ...values) {
 
     let i = 0;
     if (options & SET_HOUR) cam.current_date.setHours(values[i++]);
-    if (options & SET_DAY) {
-        cam.current_date.setDate(values[i++]);
-        // preloadImages()
-
-
-
-        // finish that!!!
-    }
+    if (options & SET_DAY) cam.current_date.setDate(values[i++]);
     if (options & SET_MONTH) cam.current_date.setMonth(values[i++]);
     if (options & SET_YEAR) cam.current_date.setFullYear(values[i]);
+
+    if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
+        let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
+        preload_images(url_no_hour);
+    }
 
     console.log(values)
     console.log(cam.current_date.getHours())
