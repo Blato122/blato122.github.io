@@ -7,11 +7,6 @@ function switch_tab(tab) {
     document.getElementById(tab).style.display = "block";
 }
 
-function dropdown() {
-    let list = document.getElementById("dropdown-camera");  
-    document.getElementById("dropdown-choice").value = list.options[list.selectedIndex].text;  
-}
-
 // potem preload!
 
 const HISTORY_URL = 'https://blato122.github.io/history.html';
@@ -30,22 +25,27 @@ function history_handler() {
     }
 
     start_date.setHours(hour_picker.value);
-    end_date.setHours(hour_picker.value)
+    end_date.setHours(hour_picker.value);
 
-    let gouter_picker = document.getElementById('gouter-picker');
-    let tete_rousse_picker = document.getElementById('tete_rousse-picker');
+    let list = document.getElementById("dropdown-camera-list"); 
+    let camera = list.options[list.selectedIndex].text;
+    console.log(camera);
+    console.log(list.options[list.selectedIndex].value)
 
-    let checked = [];
-    if (tete_rousse_picker.checked) {
-        checked.push(tete_rousse_picker.value);
-    } 
-    if (gouter_picker.checked) {
-        checked.push(gouter_picker.value);
-    }
+    // let gouter_picker = document.getElementById('gouter-picker');
+    // let tete_rousse_picker = document.getElementById('tete_rousse-picker');
 
-    for (var i = 0; i < checked.length; ++i) {
-        display_history(checked[i], start_date, end_date);
-    }
+    // let checked = [];
+    // if (tete_rousse_picker.checked) {
+    //     checked.push(tete_rousse_picker.value);
+    // } 
+    // if (gouter_picker.checked) {
+    //     checked.push(gouter_picker.value);
+    // }
+
+    // for (var i = 0; i < checked.length; ++i) {
+    //     display_history(checked[i], start_date, end_date);
+    // }
 }
 
 // default zakres ustawić na 60 dni np! i default godzina jako ta current
