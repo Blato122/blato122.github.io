@@ -223,17 +223,11 @@ function update_date(cam, options, ...values) {
 
 // albo w ogóle w github actions wyłączyć pobieranie dla czasu zimowego!
 //  sprawdzić czy te daty CET w ogóle działają! + po zmianie czasu!
+
 // split into 2 files??? ale syf tu jest już
-// to do:
-// https://stackoverflow.com/questions/70983766/range-slider-avoid-moving-forward-when-reaching-a-value-specified-in-another-e
-// to u góry zamiast ograniczania sztucznie slidera
-// i może jeszcze sprawdzanie slidera w jego event listenerze zamiast w funkcji potem?
-// po co zmieniac wartosc i potem z powrotem ja przywracac? lepiej w ogole nie zmienac chyab
-// chyvba jednak nie, to bedzie neiwygodne, lepiej calosc na raz moze jednak
 
 class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ TUTAJ CHYBA?
     constructor(name) {
-        console.log(name);
         this.name = name;
         this.base_url = `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${this.name}/`;
         this.img_element = document.getElementById(this.name + '-photo');
@@ -242,6 +236,11 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
         this.current_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
+    }
+
+    // so that Camera objects can be used as dictionary keys
+    toString() {
+        return this.name;
     }
 
     init() {
