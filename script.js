@@ -273,7 +273,9 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
                 // i slider na poprzednią godzinę
             }
             console.log("img_element: error")
-            this.img_element.src = 'image-not-found.png';
+            if (this.img_element.src != 'image-not-found.png') {
+                this.img_element.src = 'image-not-found.png';
+            }
         });
         
         // update when slider value changes
