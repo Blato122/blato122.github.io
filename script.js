@@ -145,7 +145,8 @@ function preload_images() {
     // wyczyścić tablicę przed rozpoczęciem?
     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
 
-    for (let cam in cams) {
+    for (let cam_name in cams) {
+        let cam = cams[cam_name]
         console.log(cam.name);
         // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
         if (!preloaded_images_day[cam]) {
