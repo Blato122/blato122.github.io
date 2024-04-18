@@ -28,9 +28,12 @@ function history_handler() {
     end_date.setHours(hour_picker.value);
 
     let list = document.getElementById("dropdown-camera-list"); 
-    let camera = list.options[list.selectedIndex].text;
+    let camera = list.options[list.selectedIndex].value; // not .text
     console.log(camera);
-    console.log(list.options[list.selectedIndex].value)
+
+    if (camera != "none") {
+        display_history(camera, start_date, end_date);
+    }
 
     // let gouter_picker = document.getElementById('gouter-picker');
     // let tete_rousse_picker = document.getElementById('tete_rousse-picker');
