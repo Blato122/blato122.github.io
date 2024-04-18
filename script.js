@@ -7,13 +7,9 @@ function switch_tab(tab) {
     document.getElementById(tab).style.display = "block";
 }
 
-function toggle_dropdown() {
-    let click = document.getElementById("dropdown-items");  
-    if (click.style.display === "none") {  
-        click.style.display = "block";  
-    } else {  
-        click.style.display = "none";  
-    }   
+function dropdown() {
+    let list = document.getElementById("dropdown-camera");  
+    document.getElementById("dropdown-choice").value = list.options[list.selectedIndex].text;  
 }
 
 // potem preload!

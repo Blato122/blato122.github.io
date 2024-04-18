@@ -18,16 +18,17 @@
         <input type="radio" id="tete_rousse-picker" name="tete_rousse-picker" value="tete_rousse">
         <label for="tete_rousse">Tête Rousse</label><br>
 
-        <div class="dropdown">  
-            <button onclick="toggle_dropdown()" class="dropdown-open">Choose the camera (history)</button>  
-                <!-- on klika dac do jsa? -->
-                <!-- on klika dac do jsa? -->
-                <!-- on klika dac do jsa? -->
-                <div id="dropdown-items">  
-                   <a href="#">Goûter</a>  
-                   <a href="#">Tête Rousse</a>  
-                </div>  
-        </div>          
+        <form>  
+            <b>Choose a camera (history)</b>  
+            <select id="dropdown-camera" onchange="dropdown()" >  
+                <option> ---Choose camera--- </option>  
+                <option>Goûter</option>  
+                <option>Tête Rousse</option>  
+            </select>  
+            <p> You selected:   
+                <input type="dropdown-text" id="dropdown-choice" size="20">
+            </p>  
+        </form>           
 
         <input type="date" id="end-date-picker" name="end-date-picker">
         <label for="end-date-picker">Choose end date</label><br>
