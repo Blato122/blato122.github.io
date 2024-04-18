@@ -349,7 +349,8 @@ function webcam_setup(name) {
     cam.all();
     
     // initial update
-    update_photo(cam); // clean that up?
+    // update_photo(cam); // clean that up?
+    update_date(cam);//???
 }
 
 function main() {
