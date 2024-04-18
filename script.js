@@ -268,7 +268,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
     setup_misc() {
         this.img_element.addEventListener("error", () => {
             let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
-            if (this.current_date === today_cropped) {
+            if (this.current_date.getDate() === today_cropped.getDate()) {
                 this.info.innerText = "not available yet - try again in a few minutes";
                 // i slider na poprzednią godzinę
             }
