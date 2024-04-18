@@ -1,5 +1,5 @@
 .gallery {
-    width: 75%; /* Reduce the container's width to 75% of the original size */
+    width: 66%; /* Reduce the container's width to 66% of the original size */
 }
 
 .centered {
@@ -53,7 +53,10 @@
 }
 
 /* main page tabs: */
-
+/* 
+new 
+stuff
+*/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -62,11 +65,17 @@ body {
 
 .history {
     margin-bottom: 20px;
+    text-align: center;
+}
+
+.history form {
+    margin-bottom: 20px;
 }
 
 .tab-select-bar {
     background-color: #f0f0f0;
     padding: 10px 0;
+    text-align: center;
 }
 
 .tab-select-bar button {
@@ -89,7 +98,8 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin: 0 auto; /* Center the gallery */
+    max-width: 600px; /* Limit the width of the gallery */
 }
 
 .gallery p {
@@ -99,6 +109,7 @@ body {
 
 .navigation {
     margin-top: 20px;
+    text-align: center;
 }
 
 .slidecontainer {
