@@ -56,7 +56,7 @@
 /* 
 new 
 stuff
-*/
+*//*
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -156,4 +156,72 @@ body {
 
 .navigation button:hover {
     background-color: #0056b3;
+}
+*/
+/* General styles */
+body {
+    font-family: Arial, sans-serif; /* Use a common font */
+}
+
+/* Style for the history section */
+.history {
+    margin-bottom: 20px; /* Add some space below */
+}
+
+/* Style for form elements inside history */
+.history form {
+    margin-bottom: 10px; /* Add some space below the form */
+}
+
+/* Style for select element inside form */
+.history select {
+    margin-right: 10px; /* Add some space to the right */
+}
+
+/* Style for buttons inside history */
+.history button {
+    margin-right: 10px; /* Add some space to the right */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    padding: 5px 10px; /* Add padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    background-color: #0430aa; /* Blue background color */
+    color: white; /* White text color */
+}
+
+/* Change button color on hover */
+.history button:hover {
+    background-color: #032178; /* Darker blue on hover */
+}
+
+/* Style for tab-select-bar */
+.tab-select-bar {
+    margin-bottom: 20px; /* Add some space below */
+}
+
+/* Style for buttons inside tab-select-bar */
+.tab-select-bar button {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    padding: 5px 10px; /* Add padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    background-color: #ccc; /* Light gray background color */
+    color: #333; /* Dark gray text color */
+}
+
+/* Change button color on hover */
+.tab-select-bar button:hover {
+    background-color: #aaa; /* Darker gray on hover */
+}
+
+/* Highlight currently chosen tab */
+.tab-select-bar button.active {
+    background-color: #0430aa; /* Blue background color */
+    color: white; /* White text color */
+}
+
+/* Center the gallery section */
+.gallery {
+    width: 75%; /* Set the width */
+    margin: 0 auto; /* Center horizontally */
 }

@@ -276,7 +276,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
             }
             console.log("img_element: error")
             if (this.img_element.src != 'image-not-found.png') {
-                this.img_element.src = 'image-not-found.png'; // doesnt work ehh
+                this.img_element.src = 'image-not-found.png'; // ok fine
             }
         });
         
