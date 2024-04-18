@@ -67,9 +67,22 @@ body {
 
 
 
+/* Style for the main container */
+.container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space evenly between children */
+    padding: 20px; /* Add padding */
+}
+
 /* Style for the history section */
 .history {
-    margin-bottom: 20px; /* Add some space below */
+    width: 25%; /* Set the width */
+}
+
+/* Style for the history header */
+.history h2 {
+    font-weight: bold; /* Bold text */
+    font-size: 24px; /* Larger font size */
 }
 
 /* Style for form elements inside history */
@@ -81,7 +94,7 @@ body {
 .history select {
     margin-right: 10px; /* Add some space to the right */
     padding: 5px; /* Add padding */
-    border: 2px solid #001d6d; /* Add border */
+    border: 2px solid #0430aa; /* Add border */
     border-radius: 5px; /* Add border radius */
 }
 
@@ -92,7 +105,7 @@ body {
     padding: 8px 20px; /* Add padding */
     border: none; /* Remove border */
     border-radius: 5px; /* Add border radius */
-    background-color: #001d6d; /* Blue background color */
+    background-color: #0430aa; /* Blue background color */
     color: white; /* White text color */
 }
 
@@ -130,7 +143,7 @@ body {
 
 /* Center the gallery section */
 .gallery {
-    width: 75%; /* Set the width */
+    width: 70%; /* Set the width */
     margin: 0 auto; /* Center horizontally */
     border: 2px solid #001d6d; /* Add border */
     border-radius: 10px; /* Add border radius */
