@@ -233,6 +233,7 @@ function update_date(cam, options, ...values) {
 
 class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ TUTAJ CHYBA?
     constructor(name) {
+        console.log(name);
         this.name = name;
         this.base_url = `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${this.name}/`;
         this.img_element = document.getElementById(this.name + '-photo');
