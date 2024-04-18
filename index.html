@@ -29,47 +29,65 @@
         <!-- maybe later change cam choice to one of two options (click to show options) -->
         <button onclick="history_handler()">Display history (enter CST/CEST timezone dates!)</button>
         <!-- on klika dac do jsa? -->
+        <!-- on klika dac do jsa? -->
+        <!-- on klika dac do jsa? -->
     </div>
 
-    <div class="gallery">
-        <p>Goûter camera photo</p>
-        <div id="gouter-date"></div>
-        <img id="gouter-photo" src="" alt="Gouter photo">
-        <div class="navigation">
-            <div class="slidecontainer">
-                <input type="range" min="7" max="21" class="slider" id="gouter-time-slider"> 
-                <div id="gouter-hour"></div>
-                <div id="gouter-info"></div>
+    <div class="w3-bar w3-black">
+        <button class="tab-select" onclick="switch_tab('gouter-tab')">Goûter</button>
+        <button class="tab-select" onclick="switch_tab('tete_rousse-tab')">Tête Rousse</button>
+        <!-- on klika dac do jsa? -->
+        <!-- on klika dac do jsa? -->
+        <!-- on klika dac do jsa? -->
+    </div>
+
+    <div id="gouter-tab" class="tab">
+        <div class="gallery">
+            <p>Goûter camera photo</p>
+            <div id="gouter-date"></div>
+            <img id="gouter-photo" src="" alt="Gouter photo">
+            <div class="navigation">
+                <div class="slidecontainer">
+                    <input type="range" min="7" max="21" class="slider" id="gouter-time-slider"> 
+                    <div id="gouter-hour"></div>
+                    <div id="gouter-info"></div>
+                </div>
+                <button id="gouter-now">now</button>
+                <button id="gouter-prev-day">-1 day</button>
+                <button id="gouter-next-day">+1 day</button>
+                <button id="gouter-prev-month">-1 month</button>
+                <button id="gouter-next-month">+1 month</button>
+                <button id="gouter-prev-year">-1 year</button>
+                <button id="gouter-next-year">+1 year</button>
             </div>
-            <button id="gouter-now">now</button>
-            <button id="gouter-prev-day">-1 day</button>
-            <button id="gouter-next-day">+1 day</button>
-            <button id="gouter-prev-month">-1 month</button>
-            <button id="gouter-next-month">+1 month</button>
-            <button id="gouter-prev-year">-1 year</button>
-            <button id="gouter-next-year">+1 year</button>
         </div>
     </div>
+    
+    <div id="tete_rousse-tab" class="tab" style="display:none">
+        <div class="gallery">
+            <p>Tête Rousse camera photo</p>
+            <div id="tete_rousse-date"></div>
+            <img id="tete_rousse-photo" src="" alt="Tete Rousse photo">
+            <div class="navigation">
+                <div class="slidecontainer">
+                    <input type="range" min="7" max="21" class="slider" id="tete_rousse-time-slider"> 
+                    <div id="tete_rousse-hour"></div>
+                    <div id="tete_rousse-info"></div>
+                </div>
+                <button id="tete_rousse-now">now</button>
+                <button id="tete_rousse-prev-day">-1 day</button>
+                <button id="tete_rousse-next-day">+1 day</button>
+                <button id="tete_rousse-prev-month">-1 month</button>
+                <button id="tete_rousse-next-month">+1 month</button>
+                <button id="tete_rousse-prev-year">-1 year</button>
+                <button id="tete_rousse-next-year">+1 year</button>
+            </div>
+        </div>
+    </div>
+
+
   
-    <div class="gallery">
-        <p>Tête Rousse camera photo</p>
-        <div id="tete_rousse-date"></div>
-        <img id="tete_rousse-photo" src="" alt="Tete Rousse photo">
-        <div class="navigation">
-            <div class="slidecontainer">
-                <input type="range" min="7" max="21" class="slider" id="tete_rousse-time-slider"> 
-                <div id="tete_rousse-hour"></div>
-                <div id="tete_rousse-info"></div>
-            </div>
-            <button id="tete_rousse-now">now</button>
-            <button id="tete_rousse-prev-day">-1 day</button>
-            <button id="tete_rousse-next-day">+1 day</button>
-            <button id="tete_rousse-prev-month">-1 month</button>
-            <button id="tete_rousse-next-month">+1 month</button>
-            <button id="tete_rousse-prev-year">-1 year</button>
-            <button id="tete_rousse-next-year">+1 year</button>
-        </div>
-    </div>
+
   </body>
 
 </html>

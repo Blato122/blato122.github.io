@@ -1,3 +1,12 @@
+// move that somewhere else later!!!
+function switch_tab(tab) {
+    let tabs = document.getElementsByClassName("tab");
+    for (let i = 0; i < x.length; i++) {
+        tabs[i].style.display = "none";
+    }
+    document.getElementById(tab).style.display = "block";
+  }
+
 const HISTORY_URL = 'https://blato122.github.io/history.html';
 
 function history_handler() {
