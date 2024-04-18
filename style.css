@@ -135,7 +135,7 @@ button.active {
 
 /* Center the gallery section */
 .gallery {
-    width: 66%; /* Set the width */
+    width: 75%; /* Set the width */
     margin: 0 auto; /* Center horizontally */
     border: 2px solid #001d6d; /* Add border */
     border-radius: 10px; /* Add border radius */
