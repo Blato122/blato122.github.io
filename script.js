@@ -149,7 +149,7 @@ function preload_images() {
         let cam = cams[cam_name]
         console.log(cam.name);
         // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
-        if (!preloaded_images_day[cam]) {
+        if (!preloaded_images_day[cam]) { // auto conversion from a Camera object to a string via toString() method
             preloaded_images_day[cam] = [];
         }
 
