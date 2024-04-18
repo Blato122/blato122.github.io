@@ -249,7 +249,7 @@ function update_date(cam, options, ...values) {
 // po co zmieniac wartosc i potem z powrotem ja przywracac? lepiej w ogole nie zmienac chyab
 // chyvba jednak nie, to bedzie neiwygodne, lepiej calosc na raz moze jednak
 
-class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ TUTAJ CHYBA XD?
+class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ TUTAJ CHYBA?
     constructor(name) {
         this.name = name;
         this.base_url = `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${this.name}/`;
@@ -259,8 +259,6 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
         this.current_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
-        // console.log("lalala")
-        // console.log(this.current_date);
     }
 
     init() {
@@ -345,10 +343,6 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
     }
 }
 
-
-// slownik ze zmiennymi gouter/tete?
-
-
 // global!!!
 const today = CET_CEST_now(); // current date, can't go past that (CET/CEST)
 const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting the program, can't go earlier than that (CET)
@@ -386,8 +380,8 @@ function webcam_setup(name) {
 
 function main() {
     webcam_setup("gouter");
-    webcam_setup("gouter_old")
-    webcam_setup("tete_rousse")
+    webcam_setup("gouter_old");
+    webcam_setup("tete_rousse");
 }
 
 main(); // w sumie, co się dzieje jak się otworzy stronę o np. 23? które zdjęcie pokazuje?
