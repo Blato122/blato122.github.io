@@ -28,6 +28,8 @@ to do: ! ! ! ! !
 - nie pokazuje zdjęć między 22 a 6! niech pokazuje wtedy nie not found, a zdjęcie z 7 lub 21 - DONE
 - find out a way to make github actions fail less often
 -   POPRAWIC ZMIANE TABOW ZDJECIA SA ZLE! - done
+- MOBILE BETTER DESIGN
+- HISTORY BETTER DESIGN
 
 jednak nie:
 - it doesn't show image-not-photo on load now
