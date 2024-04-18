@@ -12,37 +12,6 @@
 </head>
 
 <body>
-    <div class="history">
-        <h2>Display history</h2>
-        <!-- <input type="radio" id="gouter-picker" name="gouter-picker" value="gouter">
-        <label for="gouter">Goûter</label><br>
-        <input type="radio" id="tete_rousse-picker" name="tete_rousse-picker" value="tete_rousse">
-        <label for="tete_rousse">Tête Rousse</label><br> -->
-
-        <form>  
-            <select id="dropdown-camera-list">  
-                <option value="none">---Choose camera---</option>  
-                <option value="gouter">Goûter</option>  
-                <option value="gouter_old">Goûter "Old shelter"</option>
-                <option value="tete_rousse">Tête Rousse</option>  
-            </select>  
-        </form>           
-
-        <input type="date" id="end-date-picker" name="end-date-picker">
-        <label for="end-date-picker">Choose end date</label><br>
-        <input type="date" id="start-date-picker" name="start-date-picker">
-        <label for="start-date-picker">Choose start date</label><br>
-        <!-- default value dla hour picker! -->
-        <input type="number" id="hour-picker" name="hour-picker" min="7" max="21">
-        <!-- czym się różni name od id od value? -->
-        <label for="hour-picker">Choose an hour (7-21)</label><br>
-        <!-- maybe later change cam choice to one of two options (click to show options) -->
-        <button onclick="history_handler()">Display history (enter CST/CEST timezone dates!)</button>
-        <!-- on klika dac do jsa? -->
-        <!-- on klika dac do jsa? -->
-        <!-- on klika dac do jsa? -->
-    </div>
-
     <div class="tab-select-bar">
         <button class="tab-select" onclick="switch_tab('gouter-tab')">Goûter</button>
         <button class="tab-select" onclick="switch_tab('gouter_old-tab')">Goûter "Old shelter"</button>
@@ -53,7 +22,7 @@
     </div>
 
     <!-- gouter display none because the camera is broken for some reason and now tete is default -->
-    <div id="gouter-tab" class="tab">
+    <div id="gouter-tab" class="tab" style="display:none">
         <div class="gallery">
             <h2>Goûter camera photo</h2>
             <div id="gouter-date"></div>
@@ -75,7 +44,7 @@
         </div>
     </div>
 
-    <div id="gouter_old-tab" class="tab">
+    <div id="gouter_old-tab" class="tab" style="display:none">
         <div class="gallery">
             <h2>Goûter "Old shelter" camera photo</h2>
             <div id="gouter_old-date"></div>
@@ -117,6 +86,37 @@
                 <button id="tete_rousse-next-year">+1 year</button>
             </div>
         </div>
+    </div>
+
+    <div class="history">
+        <h2>Display history</h2>
+        <!-- <input type="radio" id="gouter-picker" name="gouter-picker" value="gouter">
+        <label for="gouter">Goûter</label><br>
+        <input type="radio" id="tete_rousse-picker" name="tete_rousse-picker" value="tete_rousse">
+        <label for="tete_rousse">Tête Rousse</label><br> -->
+
+        <form>  
+            <select id="dropdown-camera-list">  
+                <option value="none">---Choose camera---</option>  
+                <option value="gouter">Goûter</option>  
+                <option value="gouter_old">Goûter "Old shelter"</option>
+                <option value="tete_rousse">Tête Rousse</option>  
+            </select>  
+        </form>           
+
+        <input type="date" id="end-date-picker" name="end-date-picker">
+        <label for="end-date-picker">Choose end date</label><br>
+        <input type="date" id="start-date-picker" name="start-date-picker">
+        <label for="start-date-picker">Choose start date</label><br>
+        <!-- default value dla hour picker! -->
+        <input type="number" id="hour-picker" name="hour-picker" min="7" max="21">
+        <!-- czym się różni name od id od value? -->
+        <label for="hour-picker">Choose an hour (7-21)</label><br>
+        <!-- maybe later change cam choice to one of two options (click to show options) -->
+        <button onclick="history_handler()">Display history (enter CST/CEST timezone dates!)</button>
+        <!-- on klika dac do jsa? -->
+        <!-- on klika dac do jsa? -->
+        <!-- on klika dac do jsa? -->
     </div>
 
   </body>
