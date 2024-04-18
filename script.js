@@ -158,10 +158,12 @@ function preload_images() {
         for (let i = 7; i <= 21; i++) {
             let hour_str = (i >= 10) ? i : ("0" + i);
             let img = new Image();
-            // ten listener już jest
-            // img.onerror = function() { // a nie arrow fncion?
-            //     img.src = 'image-not-found.png'; 
-            // };
+            // whaat lol
+            // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
+            // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
+            img.onerror = () => {
+                img.src = 'image-not-found.png'; 
+            };
             img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
             preloaded_images_day[cam].push(img); // src czy url czy co
         }
@@ -268,13 +270,13 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
     setup_misc() {
         this.img_element.addEventListener("error", () => {
             let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
-            if (this.current_date.getDate() === today_cropped.getDate()) {
+            if (this.current_date.getTime() === today_cropped.getTime()) {
                 this.info.innerText = "not available yet - try again in a few minutes";
                 // i slider na poprzednią godzinę
             }
             console.log("img_element: error")
             if (this.img_element.src != 'image-not-found.png') {
-                this.img_element.src = 'image-not-found.png';
+                this.img_element.src = 'image-not-found.png'; // doesnt work ehh
             }
         });
         
