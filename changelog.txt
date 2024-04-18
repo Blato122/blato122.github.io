@@ -24,8 +24,8 @@ xx.04.2024:
 
 
 to do: ! ! ! ! !  
-- zamiast obsługi cet/cest w pythonie, to zrobić to w github actions już
-- nie pokazuje zdjęć między 22 a 6! niech pokazuje wtedy nie not found, a zdjęcie z 7 lub 21
+- zamiast obsługi cet/cest w pythonie, to zrobić to w github actions  - raczej nie, bo punkt poniżej: (?)
+- nie pokazuje zdjęć między 22 a 6! niech pokazuje wtedy nie not found, a zdjęcie z 7 lub 21 - DONE
 - find out a way to make github actions fail less often
 -   POPRAWIC ZMIANE TABOW ZDJECIA SA ZLE! - done
 
