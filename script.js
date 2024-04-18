@@ -139,12 +139,19 @@ function CET_CEST_now() {
 // zawiera wszystkie zdjęcia z danego dnia
 // tylko offset o 7 trzeba, no bo zdjęcie z 7 godziny jest na indeksie 0
 // chyba że słownik znowu
-let preloaded_images_day = []
+let preloaded_images_day = {}
 
-function preload_images(url_no_hour) {
+function preload_images(cam) {
     // wyczyścić tablicę przed rozpoczęciem?
     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
-    preloaded_images_day.length = 0; // xd
+
+    // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
+    if (!preloaded_images_day[cam]) {
+        preloaded_images_day[cam] = [];
+    }
+
+    let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
+    preloaded_images_day[cam].length = 0; // xd
     for (let i = 7; i <= 21; i++) {
         let hour_str = (i >= 10) ? i : ("0" + i);
         let img = new Image();
@@ -153,16 +160,16 @@ function preload_images(url_no_hour) {
         //     img.src = 'image-not-found.png'; 
         // };
         img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-        preloaded_images_day.push(img); // src czy url czy co
+        preloaded_images_day[cam].push(img); // src czy url czy co
     }
-    console.log(preloaded_images_day);
+    console.log(preloaded_images_day[cam]);
 }
 
 function update_photo(cam) {
     // let hour_str = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
     // let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
     let hour = cam.current_date.getHours();
-    let img_url = preloaded_images_day[hour-7].src; // 7.00 to indeks 0
+    let img_url = preloaded_images_day[cam][hour-7].src; // 7.00 to indeks 0
     console.log("displaying image: " + img_url);
     cam.img_element.src = img_url;
     cam.date.innerText = cam.current_date; // date only changes when the photo changes
@@ -193,8 +200,7 @@ function update_date(cam, options, ...values) {
     if (options & SET_YEAR) cam.current_date.setFullYear(values[i]);
 
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
-        let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
-        preload_images(url_no_hour);
+        preload_images(cam);
     }
 
     // console.log(values)
