@@ -5,7 +5,18 @@ function switch_tab(tab) {
         tabs[i].style.display = "none";
     }
     document.getElementById(tab).style.display = "block";
-  }
+}
+
+function toggle_dropdown() {
+    let click = document.getElementById("dropdown-items");  
+    if (click.style.display === "none") {  
+        click.style.display = "block";  
+    } else {  
+        click.style.display = "none";  
+    }   
+}
+
+// potem preload!
 
 const HISTORY_URL = 'https://blato122.github.io/history.html';
 
@@ -125,7 +136,11 @@ function CET_CEST_now() {
 
 // dok to :) poniżej
 
-let preloaded_images = []
+let preloaded_images_day = []
+
+function preload_images() {
+
+}
 
 function preloadImages(array, waitForOtherResources, timeout) {
     let loaded = false;
