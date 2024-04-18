@@ -63,6 +63,10 @@ body {
     padding: 0; /* Remove default padding */
 }
 
+
+
+
+
 /* Style for the history section */
 .history {
     margin-bottom: 20px; /* Add some space below */
@@ -97,6 +101,10 @@ body {
     background-color: #032178; /* Darker blue on hover */
 }
 
+
+
+
+
 /* Style for tab-select-bar */
 .tab-select-bar {
     margin-bottom: 20px; /* Add some space below */
@@ -130,7 +138,6 @@ body {
 }
 
 /* Style for gallery name */
-.history .gallery h3 {
+.history .gallery h2 {
     font-weight: bold; /* Bold text */
-    /* font-size: 20px; /* Larger font size */
 }
