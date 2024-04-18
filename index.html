@@ -12,11 +12,14 @@
 </head>
 
 <body>
-    <div class="tab-select-bar">
+    <div class="title">
         <h1>Mont Blanc cameras</h1>
-        <button class="tab-select" onclick="switch_tab('gouter-tab')">Goûter</button>
-        <button class="tab-select" onclick="switch_tab('gouter_old-tab')">Goûter "Old shelter"</button>
-        <button class="tab-select" onclick="switch_tab('tete_rousse-tab')">Tête Rousse</button>
+    </div>
+
+    <div class="tab-select-bar">
+        <button class="tab-select" onclick="switch_tab(event, 'gouter-tab')">Goûter</button>
+        <button class="tab-select" onclick="switch_tab(event,'gouter_old-tab')">Goûter "Old shelter"</button>
+        <button class="tab-select active" onclick="switch_tab(event, 'tete_rousse-tab')">Tête Rousse</button>
         <!-- on klika dac do jsa? -->
         <!-- on klika dac do jsa? -->
         <!-- on klika dac do jsa? -->

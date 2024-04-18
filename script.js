@@ -1,13 +1,17 @@
 // move that somewhere else later!!!
-function switch_tab(tab) {
+// https://www.w3schools.com/w3css/w3css_tabulators.asp
+function switch_tab(event, tab) {
     let tabs = document.getElementsByClassName("tab");
+    let tablinks = document.getElementsByClassName("tab-select");
+
     for (let i = 0; i < tabs.length; i++) {
         tabs[i].style.display = "none";
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(tab).style.display = "block";
-}
 
-// potem preload!
+    document.getElementById(tab).style.display = "block";
+    event.currentTarget.className += " active";
+}
 
 const HISTORY_URL = 'https://blato122.github.io/history.html';
 

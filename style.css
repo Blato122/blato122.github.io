@@ -122,7 +122,7 @@ body {
 }
 
 /* Highlight currently chosen tab */
-.tab-select-bar button.active {
+.active {
     background-color: #335280; /* Blue background color */
     color: white; /* White text color */
 }
@@ -141,6 +141,6 @@ body {
     font-weight: bold; /* Bold text */
 }
 
-.tab-select-bar h1 {
+.title h1 {
     font-weight: bold;
 }
