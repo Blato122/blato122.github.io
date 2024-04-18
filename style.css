@@ -159,8 +159,11 @@ body {
 }
 */
 /* General styles */
+/* General styles */
 body {
     font-family: Arial, sans-serif; /* Use a common font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
 }
 
 /* Style for the history section */
@@ -176,13 +179,16 @@ body {
 /* Style for select element inside form */
 .history select {
     margin-right: 10px; /* Add some space to the right */
+    padding: 5px; /* Add padding */
+    border: 2px solid #0430aa; /* Add border */
+    border-radius: 5px; /* Add border radius */
 }
 
 /* Style for buttons inside history */
 .history button {
     margin-right: 10px; /* Add some space to the right */
     cursor: pointer; /* Change cursor to pointer on hover */
-    padding: 5px 10px; /* Add padding */
+    padding: 8px 20px; /* Add padding */
     border: none; /* Remove border */
     border-radius: 5px; /* Add border radius */
     background-color: #0430aa; /* Blue background color */
@@ -197,21 +203,18 @@ body {
 /* Style for tab-select-bar */
 .tab-select-bar {
     margin-bottom: 20px; /* Add some space below */
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: center; /* Center buttons horizontally */
 }
 
 /* Style for buttons inside tab-select-bar */
 .tab-select-bar button {
     cursor: pointer; /* Change cursor to pointer on hover */
-    padding: 5px 10px; /* Add padding */
+    padding: 8px 20px; /* Add padding */
     border: none; /* Remove border */
     border-radius: 5px; /* Add border radius */
     background-color: #ccc; /* Light gray background color */
     color: #333; /* Dark gray text color */
-}
-
-/* Change button color on hover */
-.tab-select-bar button:hover {
-    background-color: #aaa; /* Darker gray on hover */
 }
 
 /* Highlight currently chosen tab */
@@ -224,4 +227,13 @@ body {
 .gallery {
     width: 75%; /* Set the width */
     margin: 0 auto; /* Center horizontally */
+    border: 2px solid #0430aa; /* Add border */
+    border-radius: 10px; /* Add border radius */
+    padding: 20px; /* Add padding */
+}
+
+/* Style for gallery name */
+.gallery p {
+    font-weight: bold; /* Bold text */
+    font-size: 20px; /* Larger font size */
 }
