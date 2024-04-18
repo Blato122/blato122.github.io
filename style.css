@@ -140,3 +140,7 @@ body {
 .history .gallery h2 {
     font-weight: bold; /* Bold text */
 }
+
+.tab-select-bar h1 {
+    font-weight: bold;
+}
