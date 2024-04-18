@@ -350,7 +350,7 @@ function webcam_setup(name) {
     
     // initial update
     // update_photo(cam); // clean that up?
-    update_date(cam);//???
+    update_date(cam, SET_ALL, today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); //?
 }
 
 function main() {
