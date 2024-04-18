@@ -11,18 +11,13 @@
 18.04.2024:
 - added 3rd cam (gouter old)
 - dropdown history menu (instead of radio)
-
+- image preloading (no difference at all...)
 
 
 
 xx.04.2024:
-
 - default wartości dla daty i godziny (current)
 - obsługa tego błędu ssl może?
-
-xx.04.2024:
-
-- image preloading
 
 to do:
 - jednak zrobić tak, żeby nie pokazywało niepobranych zdjęć (to image-not-found)

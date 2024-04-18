@@ -148,9 +148,10 @@ function preload_images(url_no_hour) {
     for (let i = 7; i <= 21; i++) {
         let hour_str = (i >= 10) ? i : ("0" + i);
         let img = new Image();
-        img.onerror = function() { // a nie arrow fncion?
-            img.src = 'image-not-found.png'; 
-        };
+        // ten listener już jest
+        // img.onerror = function() { // a nie arrow fncion?
+        //     img.src = 'image-not-found.png'; 
+        // };
         img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
         preloaded_images_day.push(img); // src czy url czy co
     }
@@ -255,7 +256,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
 
     setup_misc() {
         this.img_element.addEventListener("error", () => {
-            if (this.current_date <= today) {
+            if (this.current_date.getHours() == today.getHours()) {
                 this.info.innerText = "not available yet - try again in a few minutes"; // nie powinno tego wypisywać, gdy jest siódma... a brakuje zdjęcia (ale będzie już ok od 29 marca)
             }
             console.log("img_element: error")
