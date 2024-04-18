@@ -256,8 +256,9 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
 
     setup_misc() {
         this.img_element.addEventListener("error", () => {
-            if (this.current_date.getHours() == today.getHours()) {
-                this.info.innerText = "not available yet - try again in a few minutes"; // nie powinno tego wypisywać, gdy jest siódma... a brakuje zdjęcia (ale będzie już ok od 29 marca)
+            let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
+            if (this.current_date === today_cropped) {
+                this.info.innerText = "not available yet - try again in a few minutes";
             }
             console.log("img_element: error")
             this.img_element.src = 'image-not-found.png';
