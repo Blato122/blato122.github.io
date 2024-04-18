@@ -137,8 +137,10 @@ function CET_CEST_now() {
 
 let preloaded_images_day = []
 
-function preload_images() {
+function preload_images(url) {
+    for (let i = 7; i <= 21; i++) {
 
+    }
 }
 
 function preloadImages(array, waitForOtherResources, timeout) {
@@ -359,6 +361,7 @@ const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting th
 
 let cams = {
     "gouter": new Camera("gouter"),
+    "gouter_old": new Camera("gouter_old"),
     "tete_rousse": new Camera("tete_rousse")
 }
 
@@ -383,6 +386,7 @@ function webcam_setup(name) {
 
 function main() {
     webcam_setup("gouter");
+    webcam_setup("gouter_old")
     webcam_setup("tete_rousse")
 }
 
