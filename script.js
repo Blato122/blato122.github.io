@@ -197,11 +197,11 @@ function update_date(cam, options, ...values) {
         preload_images(url_no_hour);
     }
 
-    console.log(values)
-    console.log(cam.current_date.getHours())
-    console.log(cam.current_date.getDate())
-    console.log(cam.current_date.getMonth())
-    console.log(cam.current_date.getFullYear())
+    // console.log(values)
+    // console.log(cam.current_date.getHours())
+    // console.log(cam.current_date.getDate())
+    // console.log(cam.current_date.getMonth())
+    // console.log(cam.current_date.getFullYear())
     
     console.log("trying to set a new date: " + cam.current_date);
     if (cam.current_date >= init && cam.current_date <= today) {
@@ -215,6 +215,7 @@ function update_date(cam, options, ...values) {
     cam.hour_display.innerText = cam.slider.value;
 }
 
+// albo w ogóle w github actions wyłączyć pobieranie dla czasu zimowego!
 //  sprawdzić czy te daty CET w ogóle działają! + po zmianie czasu!
 // split into 2 files??? ale syf tu jest już
 // to do:
@@ -259,6 +260,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
             let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
             if (this.current_date === today_cropped) {
                 this.info.innerText = "not available yet - try again in a few minutes";
+                // i slider na poprzednią godzinę
             }
             console.log("img_element: error")
             this.img_element.src = 'image-not-found.png';
