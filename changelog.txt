@@ -13,13 +13,14 @@
 - dropdown history menu (instead of radio)
 - image preloading (no difference at all...)
 
-
-
 xx.04.2024:
 - default wartości dla daty i godziny (current)
 - obsługa tego błędu ssl może?
+- // w sumie, co się dzieje jak się otworzy stronę o np. 23? które zdjęcie pokazuje? !  ! ! 
 
-to do:
-- jednak zrobić tak, żeby nie pokazywało niepobranych zdjęć (to image-not-found)
+to do: ! ! ! ! !  
 - zamiast obsługi cet/cest w pythonie, to zrobić to w github actions już
 - nie pokazuje zdjęć między 22 a 6! niech pokazuje wtedy nie not found, a zdjęcie z 7 lub 21
+
+jednak nie:
+- it doesn't show image-not-photo on load now

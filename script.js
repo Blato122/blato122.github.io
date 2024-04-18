@@ -181,10 +181,10 @@ const SET_ALL = 0x1111;
 function update_date(cam, options, ...values) {
     let old_date = new Date(cam.current_date);
 
-    console.log(cam.current_date.getHours())
-    console.log(cam.current_date.getDate())
-    console.log(cam.current_date.getMonth())
-    console.log(cam.current_date.getFullYear())
+    // console.log(cam.current_date.getHours())
+    // console.log(cam.current_date.getDate())
+    // console.log(cam.current_date.getMonth())
+    // console.log(cam.current_date.getFullYear())
 
     let i = 0;
     if (options & SET_HOUR) cam.current_date.setHours(values[i++]);
@@ -364,4 +364,3 @@ function main() {
 }
 
 main(); // w sumie, co się dzieje jak się otworzy stronę o np. 23? które zdjęcie pokazuje?
-// zdjęcia z danego dnia pobeirać do tablicy i z niej wystiwltac?
