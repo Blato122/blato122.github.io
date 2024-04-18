@@ -147,6 +147,7 @@ function preload_images() {
 
     for (let i = 0; i < cams.length; ++i) {
         let cam = cams[i];
+        console.log(cam.name);
         // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
         if (!preloaded_images_day[cam]) {
             preloaded_images_day[cam] = [];
