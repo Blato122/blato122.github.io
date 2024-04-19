@@ -54,16 +54,16 @@ stuff
 */
 /* General styles */
 body {
-    font-family: 'Trebuchet MS', sans-serif;/*Arial, sans-serif; /* Use a common font */
+    font-family: 'Trebuchet MS', sans-serif;/* Arial, sans-serif; /* Use a common font */
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
 }
 
 
 /* Style for the history section */
-.history {
-    width: 25%; /* Set the width */
-}
+/* .history { */
+    /* width: 25%; /* Set the width */
+/* } */
 
 /* Style for the history header */
 .history h2 {
