@@ -1,41 +1,48 @@
-/* https://www.tutorialspoint.com/how-to-create-a-responsive-image-grid-with-html-and-css */
+/* Reset default margins and paddings */
+body {
+   margin: 10px ;
+   padding: 8px 0;
+}
 
+/* Base styling for rows and columns */
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
- }
- 
- .col {
-    flex: 25%;
-    max-width: 25%;
-    padding: 0 4px;
- }
- 
- .col img {
-    margin-top: 8px;
-    width: 100%;
-    padding: 10px;
- }
+   display: flex;
+   flex-wrap: wrap;
+   margin: 0 0px; /* Adjust the margin to create gutter space between columns */
+}
 
- /* ? */
- .col div {
-    width: 100%;
-    padding: 10px;
- }
+.col {
+   flex: 0 0 33.3333%; /* Three columns per row for larger screens */
+   max-width: 33.3333%;
+   padding: 0 8px; /* Adjust the padding for gutter space */
+   box-sizing: border-box; /* Include padding and border in the box's total width and height */
+}
 
- /* ? */
- @media screen and (max-width: 800px) {
-    .inner-grid {
-       flex: 50%;
-       max-width: 50%;
-    }
- }
+/* Styling for images */
+.col img {
+   width: 100%;
+   height: auto; /* Maintain aspect ratio */
+   border-radius: 8px; /* Add border radius for rounded corners */
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+   transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
 
- /* ? */
- @media screen and (max-width: 600px) {
-    .inner-grid {
-       flex: 100%;
+.col img:hover {
+   transform: scale(1.05); /* Scale up the image slightly on hover */
+}
+
+/* Styling for date */
+.col div {
+   padding: 8px; /* Add padding for spacing between image and date */
+   text-align: center; /* Center align the date */
+   font-size: 14px; /* Adjust font size */
+   color: #444; /* Adjust text color */
+}
+
+
+@media screen and (max-width: 900px) {
+   .col {
+       flex: 0 0 100%; /* One column per row for small screens */
        max-width: 100%;
-    }
- }
+   }
+}

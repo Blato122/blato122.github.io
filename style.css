@@ -135,7 +135,8 @@ button.active {
 
 /* Center the gallery section */
 .gallery {
-    width: 75%; /* Set the width */
+    width: 50%; /* Set the width */
+    height: 50%;
     margin: 0 auto; /* Center horizontally */
     border: 2px solid #001d6d; /* Add border */
     border-radius: 10px; /* Add border radius */
@@ -156,14 +157,21 @@ button.active {
     display: flex;
     flex-direction: column; /* Align children vertically */
     align-items: center; /* Center children horizontally */
-    /* justify-content: center; /* Center children vertically */ */
-    /* text-align: center; /* Align text center */ */
+    /* justify-content: center; /* Center children vertically */ 
+    /* text-align: center; /* Align text center */ 
     /* Add additional styling as needed */
 }
 
 .container {
     display: flex;
     justify-content: center; /* Center horizontally */
-    /* align-items: center; /* Center vertically */ */
-    /* height: 100vh; /* Set height to full viewport height */ */
+    /* align-items: center; /* Center vertically */ 
+    /* height: 100vh; /* Set height to full viewport height */ 
 }
+
+ /* ? */
+ @media screen and (max-width: 900px) {
+    .gallery {
+        height: 70%;
+        width: 70%; /* Set the width */
+ }

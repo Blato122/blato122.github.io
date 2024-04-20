@@ -183,6 +183,12 @@ function update_photo(cam) {
     console.log("displaying image: " + img_url);
     cam.img_element.src = img_url;
     cam.date.innerText = cam.current_date; // date only changes when the photo changes
+
+                
+    let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
+    if (cam.img_element.src == 'https://blato122.github.io/image-not-found.png' && (cam.current_date.getTime() === today_cropped.getTime())) {
+        cam.info.innerText = "not available yet - try again in a few minutes";
+    }
 }
 
 // 0x vs 0b???
@@ -198,11 +204,6 @@ const SET_ALL = 0x1111;
 function update_date(cam, options, ...values) {
     let old_date = new Date(cam.current_date);
 
-    // console.log(cam.current_date.getHours())
-    // console.log(cam.current_date.getDate())
-    // console.log(cam.current_date.getMonth())
-    // console.log(cam.current_date.getFullYear())
-
     let i = 0;
     if (options & SET_HOUR) cam.current_date.setHours(values[i++]);
     if (options & SET_DAY) cam.current_date.setDate(values[i++]);
@@ -212,12 +213,6 @@ function update_date(cam, options, ...values) {
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
         preload_images();
     }
-
-    // console.log(values)
-    // console.log(cam.current_date.getHours())
-    // console.log(cam.current_date.getDate())
-    // console.log(cam.current_date.getMonth())
-    // console.log(cam.current_date.getFullYear())
     
     console.log("trying to set a new date: " + cam.current_date);
     if (cam.current_date >= init && cam.current_date <= today) {
@@ -288,11 +283,6 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.slider.addEventListener("input", () => {  // podać tutaj nazwę kamery!!!
             console.log("slider: input")
             update_date(this, SET_HOUR, Number(this.slider.value));
-            
-            let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
-            if (this.img_element.src == 'https://blato122.github.io/image-not-found.png' && (this.current_date.getTime() === today_cropped.getTime())) {
-                this.info.innerText = "not available yet - try again in a few minutes";
-            }
         });
     }
 

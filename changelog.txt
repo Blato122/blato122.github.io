@@ -15,6 +15,11 @@
 - now displaying photos between 22pm and 6am
 - better look both on desktop and mobile
 
+20.04.2024:
+- minor changes (...)
+- history better look
+- full screen photos on click
+
 xx.04.2024:
 - default wartości dla daty i godziny (current)
 - obsługa tego błędu ssl może? - chyba się nie da
@@ -23,9 +28,3 @@ xx.04.2024:
 to do: ! ! ! ! !  
 - zamiast obsługi cet/cest w pythonie, to zrobić to w github actions  - raczej nie, bo punkt poniżej: (?)
 - find out a way to make github actions fail less often
-- MOBILE BETTER DESIGN
-- HISTORY BETTER DESIGN
-- FULL SCREEN PHOTO ON CLICK
-
-jednak nie:
-- it doesn't show image-not-photo on load now
