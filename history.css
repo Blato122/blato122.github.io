@@ -22,7 +22,7 @@ body {
 .col img {
    width: 100%;
    height: auto; /* Maintain aspect ratio */
-   border-radius: 8px; /* Add border radius for rounded corners */
+   border-radius: 6px; /* Add border radius for rounded corners */
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
    transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
