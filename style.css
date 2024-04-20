@@ -9,7 +9,6 @@
     width: 100%; /* Make the image occupy 100% of the container's width */
     height: auto; /* Automatically adjust the height to maintain the aspect ratio */
     border-radius: 6px; /* Add border radius for rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
     transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
