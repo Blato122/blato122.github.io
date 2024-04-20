@@ -272,22 +272,27 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
     }
 
     setup_misc() {
-        this.img_element.addEventListener("error", () => {
-            let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
-            if (this.current_date.getTime() === today_cropped.getTime()) {
-                this.info.innerText = "not available yet - try again in a few minutes";
-                // i slider na poprzednią godzinę
-            }
-            console.log("img_element: error")
-            if (this.img_element.src != 'image-not-found.png') {
-                this.img_element.src = 'image-not-found.png'; // ok fine
-            }
-        });
+        // this.img_element.addEventListener("change", () => {
+        //     let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
+        //     if (this.current_date.getTime() === today_cropped.getTime()) {
+        //         this.info.innerText = "not available yet - try again in a few minutes";
+        //         // i slider na poprzednią godzinę
+        //     }
+        //     // console.log("img_element: error")
+        //     // if (this.img_element.src != 'image-not-found.png') {
+        //     //     this.img_element.src = 'image-not-found.png'; // ok fine
+        //     // }
+        // });
         
         // update when slider value changes
         this.slider.addEventListener("input", () => {  // podać tutaj nazwę kamery!!!
             console.log("slider: input")
             update_date(this, SET_HOUR, Number(this.slider.value));
+            
+            let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
+            if (this.img_element.src == 'https://blato122.github.io/image-not-found.png' && (this.current_date.getTime() === today_cropped.getTime())) {
+                this.info.innerText = "not available yet - try again in a few minutes";
+            }
         });
     }
 
