@@ -14,10 +14,12 @@ function loadHTMLFromLocalStorage() {
     }
 }
 
-window.addEventListener('load', () => {
-    // Dump HTML content into localStorage when the page unloads
-    window.addEventListener('unload', dumpHTMLToLocalStorage);
+// Dump HTML content into localStorage when the page unloads
+window.addEventListener('unload', dumpHTMLToLocalStorage);
 
-    // Load HTML content from localStorage when the page loads
-    window.addEventListener('load', loadHTMLFromLocalStorage);
-});
+// Load HTML content from localStorage when the page loads
+// window.addEventListener('load', loadHTMLFromLocalStorage);
+
+if (sessionStorage.getItem("is_reloaded")) {
+    loadHTMLFromLocalStorage();
+}
