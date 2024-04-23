@@ -190,6 +190,7 @@ function update_photo(cam) {
     // let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
     let hour = cam.current_date.getHours();
     console.log("update photo url:" + preloaded_images_day[cam][hour-7].src);
+    console.log(preloaded_images_day[cam]);
     let img_url = preloaded_images_day[cam][hour-7].src; // 7.00 to indeks 0
     console.log("displaying image: " + img_url);
     cam.img_element.src = img_url; // niepotrzebnie istnieją 2 te same obiekty Image? mogę przypisać może obiekt zamiast src tylko? ale pewnie jakiś inny problem będzie
