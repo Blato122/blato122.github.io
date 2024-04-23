@@ -171,9 +171,9 @@ function preload_images() {
             // }
             
             img.onerror = () => {
-                console.log("onerror called!!!");
+                // console.log("onerror called!!!");
                 img.src = 'image-not-found.png'; 
-                console.log(img.src);
+                // console.log(img.src);
             };
             img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
             preloaded_images_day[cam].push(img); // src czy url czy co
@@ -219,6 +219,7 @@ function update_date(cam, options, ...values) {
     if (options & SET_YEAR) cam.current_date.setFullYear(values[i]);
 
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
+        console.log("preloading " + cam.toString())
         preload_images();
     }
     
