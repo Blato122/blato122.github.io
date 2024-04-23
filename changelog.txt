@@ -25,6 +25,7 @@
     when changing days/months/... too fast, it falls behind...
 - full screen photos on click (modal)
 
+- NAPIS NOT YET..!
 
 - default wartości dla daty i godziny (current)
 - obsługa tego błędu ssl może? - chyba się nie da

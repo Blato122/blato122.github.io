@@ -6,7 +6,7 @@ let close_modal = document.getElementsByClassName("close-modal")[0];
 let button = document.getElementsByClassName("modal-button");
 
 // When the user clicks the button, open the modal 
-this.img_element.onclick = function() {
+button.onclick = () => {
     modal.style.display = "block";
 }
 
