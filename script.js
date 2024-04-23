@@ -142,42 +142,78 @@ function CET_CEST_now() {
 // chyba że słownik znowu
 let preloaded_images_day = {}
 
+// function preload_images(cam) {
+//     // wyczyścić tablicę przed rozpoczęciem?
+//     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
+
+//     // for (let cam_name in cams) {
+//     //     let cam = cams[cam_name]
+//         console.log(cam.name);
+//         // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
+//         if (!preloaded_images_day[cam]) { // auto conversion from a Camera object to a string via toString() method
+//             preloaded_images_day[cam] = [];
+//         }
+
+//         let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
+//         preloaded_images_day[cam].length = 0; // xd
+//         for (let i = 7; i <= 21; i++) {
+//             let hour_str = (i >= 10) ? i : ("0" + i);
+//             let img = new Image();
+//             // whaat lol
+//             // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
+//             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
+//             // img.onload = () => {
+//             //     // console.log("onload called!!!");
+//             //     // console.log(img.src);
+//             //     preloaded_images_day[cam].push(img);
+//             // }
+            
+//             img.onerror = () => {
+//                 // console.log("onerror called!!!");
+//                 img.src = 'image-not-found.png'; 
+//                 // console.log(img.src);
+//             };
+//             img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
+//             console.log(img.src);
+//             preloaded_images_day[cam].push(img); // src czy url czy co
+//         }
+//     // }
+// }
+
 function preload_images(cam) {
-    // wyczyścić tablicę przed rozpoczęciem?
-    // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
+    let promises = [];
 
     // for (let cam_name in cams) {
-    //     let cam = cams[cam_name]
+    //     let cam = cams[cam_name];
         console.log(cam.name);
-        // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
-        if (!preloaded_images_day[cam]) { // auto conversion from a Camera object to a string via toString() method
+
+        if (!preloaded_images_day[cam]) {
             preloaded_images_day[cam] = [];
         }
 
         let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
-        preloaded_images_day[cam].length = 0; // xd
+        preloaded_images_day[cam].length = 0;
+
         for (let i = 7; i <= 21; i++) {
             let hour_str = (i >= 10) ? i : ("0" + i);
             let img = new Image();
-            // whaat lol
-            // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
-            // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
-            // img.onload = () => {
-            //     // console.log("onload called!!!");
-            //     // console.log(img.src);
-            //     preloaded_images_day[cam].push(img);
-            // }
-            
-            img.onerror = () => {
-                // console.log("onerror called!!!");
-                img.src = 'image-not-found.png'; 
-                // console.log(img.src);
-            };
-            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-            console.log(img.src);
-            preloaded_images_day[cam].push(img); // src czy url czy co
+
+            let promise = new Promise((resolve, reject) => {
+                img.onload = () => resolve();
+                img.onerror = () => {
+                    img.src = 'image-not-found.png';
+                    resolve();
+                };
+            });
+
+            promises.push(promise);
+
+            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str);
+            preloaded_images_day[cam].push(img);
         }
     // }
+
+    return Promise.all(promises);
 }
 
 function update_photo(cam) {
@@ -218,7 +254,18 @@ function update_date(cam, options, ...values) {
 
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
         console.log("preloading " + cam.toString())
-        preload_images(cam);
+        preload_images(cam).then(() => {
+            console.log("trying to set a new date: " + cam.current_date);
+            if (cam.current_date >= init && cam.current_date <= today) {
+                update_photo(cam);
+                cam.info.innerText = "";
+            } else {
+                cam.current_date = old_date;
+                cam.slider.value = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
+                cam.info.innerText = "not available - cannot go past " + today + " or before " + init;
+            }
+            cam.hour_display.innerText = cam.slider.value;
+        });
     }
     
     console.log("trying to set a new date: " + cam.current_date);
