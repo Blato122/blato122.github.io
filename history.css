@@ -4,6 +4,10 @@ body {
    padding: 8px 0;
 }
 
+img {
+   cursor: pointer;
+}
+
 /* Base styling for rows and columns */
 .row {
    display: flex;
