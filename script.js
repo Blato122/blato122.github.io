@@ -167,7 +167,6 @@ function preload_images() {
             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
             img.onload = () => {
                 console.log("onload called!!!");
-                img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
                 preloaded_images_day[cam].push(img); // src czy url czy co
             }
             
@@ -176,6 +175,7 @@ function preload_images() {
                 img.src = 'image-not-found.png'; 
                 preloaded_images_day[cam].push(img); // src czy url czy co
             };
+            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
         }
     }
     console.log(preloaded_images_day);
