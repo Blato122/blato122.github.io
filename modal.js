@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
 
     // When the user clicks a photo, open the modal 
     for (let img of imgs) {
-        button.addEventListener('click', () => {
+        img.addEventListener('click', () => {
             modal.style.display = "block";
             modal_img.src = img.src;
             modal_img.alt = img.alt;
