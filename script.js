@@ -145,7 +145,7 @@ function CET_CEST_now() {
 // chyba że słownik znowu
 let preloaded_images_day = {}
 
-function preload_images() {
+function preload_images(_callback) {
     // wyczyścić tablicę przed rozpoczęciem?
     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
 
@@ -180,6 +180,7 @@ function preload_images() {
         }
     }
     console.log(preloaded_images_day);
+    _callback();
 }
 
 function update_photo(cam) {
@@ -220,7 +221,9 @@ function update_date(cam, options, ...values) {
 
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
         console.log("preloading " + cam.toString())
-        preload_images();
+        preload_images(function() {
+            console.log("preloading done")
+        });
     }
     
     console.log("trying to set a new date: " + cam.current_date);
