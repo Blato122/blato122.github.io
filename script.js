@@ -178,6 +178,7 @@ function preload_images(_callback) {
                 // console.log(img.src);
                 preloaded_images_day[cam].push(img);
             };
+            console.log(img.src);
             // preloaded_images_day[cam].push(img); // src czy url czy co
         }
     }
