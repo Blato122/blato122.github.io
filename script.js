@@ -165,10 +165,10 @@ function preload_images() {
             // whaat lol
             // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
-            img.onload = () => {
-                console.log("onload called!!!");
-                console.log(img.src);
-            }
+            // img.onload = () => {
+                // console.log("onload called!!!");
+                // console.log(img.src);
+            // }
             
             img.onerror = () => {
                 console.log("onerror called!!!");
@@ -186,6 +186,7 @@ function update_photo(cam) {
     // let hour_str = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
     // let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
     let hour = cam.current_date.getHours();
+    console.log("update photo url:" + preloaded_images_day[cam][hour-7].src);
     let img_url = preloaded_images_day[cam][hour-7].src; // 7.00 to indeks 0
     console.log("displaying image: " + img_url);
     cam.img_element.src = img_url; // niepotrzebnie istnieją 2 te same obiekty Image? mogę przypisać może obiekt zamiast src tylko? ale pewnie jakiś inny problem będzie
