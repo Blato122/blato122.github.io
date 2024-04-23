@@ -17,8 +17,8 @@
 .modal-content {
   margin: auto;
   display: block;
-  width: 80%;
-  max-width: 700px;
+  width: auto;
+  max-height: 80%; /* Limit maximum height of the image */
 }
 
 /* Add Animation */
@@ -60,6 +60,6 @@
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px){
   .modal-content {
-    width: 100%;
+    width: 95%;
   }
 }
