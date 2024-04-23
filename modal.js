@@ -7,12 +7,16 @@ window.addEventListener('load', () => {
     // Get the <span> element that closes the modal - why not by id??
     let close_modal = document.getElementsByClassName("close-modal")[0];
     // Get the button that opens the modal
-    let buttons = document.getElementsByClassName("modal-button");
+    let imgs = document.getElementsByClassName("modal-button");
+    // Get the photo inside the modal
+    let modal_img = document.getElementsByClassName("modal-content");
 
     // When the user clicks a photo, open the modal 
-    for (let button of buttons) {
+    for (let img of imgs) {
         button.addEventListener('click', () => {
             modal.style.display = "block";
+            modal_img.src = img.src;
+            modal_img.alt = img.alt;
         });
     }
 
