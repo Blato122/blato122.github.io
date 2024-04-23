@@ -178,7 +178,7 @@ function preload_images(_callback) {
                 preloaded_images_day[cam].push(img);
             };
             img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-            preloaded_images_day[cam].push(img); // src czy url czy co
+            // preloaded_images_day[cam].push(img); // src czy url czy co
         }
     }
     console.log(preloaded_images_day);
