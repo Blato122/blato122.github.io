@@ -165,12 +165,17 @@ function preload_images() {
             // whaat lol
             // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
+            img.onload = () => {
+                console.log("onload called!!!");
+                img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
+                preloaded_images_day[cam].push(img); // src czy url czy co
+            }
+            
             img.onerror = () => {
-                console.log("onerror called!!!")
+                console.log("onerror called!!!");
                 img.src = 'image-not-found.png'; 
+                preloaded_images_day[cam].push(img); // src czy url czy co
             };
-            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-            preloaded_images_day[cam].push(img); // src czy url czy co
         }
     }
     console.log(preloaded_images_day);
@@ -182,7 +187,7 @@ function update_photo(cam) {
     let hour = cam.current_date.getHours();
     let img_url = preloaded_images_day[cam][hour-7].src; // 7.00 to indeks 0
     console.log("displaying image: " + img_url);
-    cam.img_element.src = img_url;
+    cam.img_element.src = img_url; // niepotrzebnie istnieją 2 te same obiekty Image? mogę przypisać może obiekt zamiast src tylko? ale pewnie jakiś inny problem będzie
     cam.date.innerText = cam.current_date; // date only changes when the photo changes
 
     // new                
