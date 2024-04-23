@@ -95,7 +95,6 @@ body {
     border: none; /* Remove border */
     border-radius: 5px; /* Add border radius */
     background-color: #ccc; /* Blue background color */
-    color: 333; /* White text color */
 }
 
 /* Change button color on hover */
