@@ -171,12 +171,6 @@ function preload_images() {
             //     // console.log(img.src);
             //     preloaded_images_day[cam].push(img);
             // }
-            
-            img.onerror = () => {
-                // console.log("onerror called!!!");
-                img.src = 'image-not-found.png'; 
-                // console.log(img.src);
-            };
             console.log(img.src);
             preloaded_images_day[cam].push(img); // src czy url czy co
         }
@@ -253,6 +247,11 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
         this.current_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
+        this.img_element.onerror = () => {
+            // console.log("onerror called!!!");
+            this.img_element.src = 'image-not-found.png'; 
+            // console.log(img.src);
+        };
     }
 
     // so that Camera objects can be used as dictionary keys
