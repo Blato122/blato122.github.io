@@ -165,6 +165,7 @@ function preload_images(_callback) {
             // whaat lol
             // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
+            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
             img.onload = () => {
                 // console.log("onload called!!!");
                 // console.log(img.src);
@@ -177,7 +178,6 @@ function preload_images(_callback) {
                 // console.log(img.src);
                 preloaded_images_day[cam].push(img);
             };
-            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
             // preloaded_images_day[cam].push(img); // src czy url czy co
         }
     }
