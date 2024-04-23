@@ -137,20 +137,17 @@ function CET_CEST_now() {
     }
 }
 
-// dok to :) poniżej
-// dodać full photo on click! i tu i w history
-
 // zawiera wszystkie zdjęcia z danego dnia
 // tylko offset o 7 trzeba, no bo zdjęcie z 7 godziny jest na indeksie 0
 // chyba że słownik znowu
 let preloaded_images_day = {}
 
-function preload_images() {
+function preload_images(cam) {
     // wyczyścić tablicę przed rozpoczęciem?
     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
 
-    for (let cam_name in cams) {
-        let cam = cams[cam_name]
+    // for (let cam_name in cams) {
+    //     let cam = cams[cam_name]
         console.log(cam.name);
         // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
         if (!preloaded_images_day[cam]) { // auto conversion from a Camera object to a string via toString() method
@@ -180,8 +177,7 @@ function preload_images() {
             console.log(img.src);
             preloaded_images_day[cam].push(img); // src czy url czy co
         }
-    }
-    console.log(preloaded_images_day);
+    // }
 }
 
 function update_photo(cam) {
@@ -223,7 +219,7 @@ function update_date(cam, options, ...values) {
 
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
         console.log("preloading " + cam.toString())
-        preload_images();
+        preload_images(cam);
     }
     
     console.log("trying to set a new date: " + cam.current_date);
