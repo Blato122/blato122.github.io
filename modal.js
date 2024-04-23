@@ -9,15 +9,13 @@ window.addEventListener('load', () => {
     // Get the button that opens the modal
     let imgs = document.getElementsByClassName("modal-button");
     // Get the photo inside the modal
-    let modal_img = document.getElementsByClassName("modal-content");
+    let modal_img = document.getElementsByClassName("modal-content")[0];
 
     // When the user clicks a photo, open the modal 
     for (let img of imgs) {
         img.addEventListener('click', () => {
             modal.style.display = "block";
             modal_img.src = img.src;
-            console.log(modal_img.src);
-            console.log(img.src);
             modal_img.alt = img.alt;
         });
     }
