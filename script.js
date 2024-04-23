@@ -165,11 +165,11 @@ function preload_images() {
             // whaat lol
             // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
-            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-
             img.onerror = () => {
+                console.log("onerror called!!!")
                 img.src = 'image-not-found.png'; 
             };
+            img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
             preloaded_images_day[cam].push(img); // src czy url czy co
         }
     }
@@ -185,7 +185,7 @@ function update_photo(cam) {
     cam.img_element.src = img_url;
     cam.date.innerText = cam.current_date; // date only changes when the photo changes
 
-                
+    // new                
     let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
     if (cam.img_element.src == 'https://blato122.github.io/image-not-found.png' && (cam.current_date.getTime() === today_cropped.getTime())) {
         cam.info.innerText = "not available yet - try again in a few minutes";
