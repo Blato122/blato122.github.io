@@ -8,10 +8,22 @@
     <title>Mont Blanc cameras</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="modal.css">
     <script src="script.js" async></script>
 </head>
 
 <body>
+    <!-- The Modal -->
+    <div id="modal-full-img" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <p>Some text in the Modal..</p>
+        </div>
+    
+    </div>
+
     <div class="title">
         <h1>Mont Blanc cameras</h1>
     </div>
@@ -30,7 +42,7 @@
         <div class="gallery">
             <h2>Goûter camera photo</h2>
             <div id="gouter-date"></div>
-            <img id="gouter-photo" src="" alt="Gouter photo">
+            <img class="modal-button" id="gouter-photo" src="" alt="Gouter photo">
             <div class="navigation">
                 <div class="slidecontainer">
                     <input type="range" min="7" max="21" class="slider" id="gouter-time-slider"> 
@@ -52,7 +64,7 @@
         <div class="gallery">
             <h2>Goûter "Vieux refuge" camera photo</h2>
             <div id="gouter_old-date"></div>
-            <img id="gouter_old-photo" src="" alt="Gouter 'Vieux refuge' photo">
+            <img class="modal-button" id="gouter_old-photo" src="" alt="Gouter 'Vieux refuge' photo">
             <div class="navigation">
                 <div class="slidecontainer">
                     <input type="range" min="7" max="21" class="slider" id="gouter_old-time-slider"> 
@@ -74,7 +86,7 @@
         <div class="gallery">
             <h2>Tête Rousse camera photo</h2>
             <div id="tete_rousse-date"></div>
-            <img id="tete_rousse-photo" src="" alt="Tete Rousse photo">
+            <img class="modal-button" id="tete_rousse-photo" src="" alt="Tete Rousse photo">
             <div class="navigation">
                 <div class="slidecontainer">
                     <input type="range" min="7" max="21" class="slider" id="tete_rousse-time-slider"> 

@@ -18,9 +18,14 @@
 20.04.2024:
 - minor changes (...)
 - history better look
-- full screen photos on click
 
-xx.04.2024:
+23.04.2024:
+- minor changes (image-not-found now possible on load by using Promise)
+    it is very slow though!!!
+    when changing days/months/... too fast, it falls behind...
+- full screen photos on click (modal)
+
+
 - default wartości dla daty i godziny (current)
 - obsługa tego błędu ssl może? - chyba się nie da
 

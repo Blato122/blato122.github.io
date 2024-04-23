@@ -98,6 +98,7 @@ function display_history(cam, start_date, end_date) { // end - późniejsza data
                 if (idx < n_elements) { // so that we don't try to access some other stuff when there are less than `cols` elements in the last row
                     let img = history.document.createElement('img');
                     img.src = this.elements[idx]["url"];
+                    img.classList.add("modal-button");
 
                     img.addEventListener("error", () => {
                         console.log("history img: error")
@@ -285,6 +286,14 @@ function update_date(cam, options, ...values) {
 
 // split into 2 files??? ale syf tu jest już
 
+
+// GLOBAL???
+// Get the modal
+let modal = document.getElementById("modal-full-img");
+// Get the <span> element that closes the modal
+let close_modal = document.getElementsByClassName("close-modal")[0];
+// why not by id??
+
 class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ TUTAJ CHYBA?
     constructor(name) {
         this.name = name;
@@ -295,6 +304,11 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
         this.current_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours());
+        
+        // When the user clicks the button, open the modal 
+        this.img_element.onclick = function() {
+            modal.style.display = "block";
+        }
     }
 
     // so that Camera objects can be used as dictionary keys
@@ -432,6 +446,18 @@ function main() {
     webcam_setup("gouter");
     webcam_setup("gouter_old");
     webcam_setup("tete_rousse");
+
+    // When the user clicks on <span> (x), close the modal
+    close_modal.onclick = () => {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = (event) => {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    }
 }
 
 main(); // w sumie, co się dzieje jak się otworzy stronę o np. 23? które zdjęcie pokazuje?
