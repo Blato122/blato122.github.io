@@ -26,6 +26,7 @@
 - full screen photos on click (modal)
 
 - NAPIS NOT YET..!
+- niech history się wyświetla po refreshu!
 
 - default wartości dla daty i godziny (current)
 - obsługa tego błędu ssl może? - chyba się nie da
