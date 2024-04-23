@@ -16,6 +16,8 @@ window.addEventListener('load', () => {
         img.addEventListener('click', () => {
             modal.style.display = "block";
             modal_img.src = img.src;
+            console.log(modal_img.src);
+            console.log(img.src);
             modal_img.alt = img.alt;
         });
     }
