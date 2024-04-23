@@ -24,6 +24,7 @@
     it is very slow though!!!
     when changing days/months/... too fast, it falls behind...
 - full screen photos on click (modal)
+- history page refresh now working (sessionStorage)
 
 - NAPIS NOT YET..!
 - niech history się wyświetla po refreshu!
