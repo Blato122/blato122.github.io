@@ -145,7 +145,7 @@ function CET_CEST_now() {
 // chyba że słownik znowu
 let preloaded_images_day = {}
 
-function preload_images(_callback) {
+function preload_images() {
     // wyczyścić tablicę przed rozpoczęciem?
     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
 
@@ -166,24 +166,22 @@ function preload_images(_callback) {
             // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
             img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-            img.onload = () => {
-                // console.log("onload called!!!");
-                // console.log(img.src);
-                preloaded_images_day[cam].push(img);
-            }
+            // img.onload = () => {
+            //     // console.log("onload called!!!");
+            //     // console.log(img.src);
+            //     preloaded_images_day[cam].push(img);
+            // }
             
             img.onerror = () => {
                 // console.log("onerror called!!!");
                 img.src = 'image-not-found.png'; 
                 // console.log(img.src);
-                preloaded_images_day[cam].push(img);
             };
             console.log(img.src);
-            // preloaded_images_day[cam].push(img); // src czy url czy co
+            preloaded_images_day[cam].push(img); // src czy url czy co
         }
     }
     console.log(preloaded_images_day);
-    _callback();
 }
 
 function update_photo(cam) {
@@ -225,9 +223,7 @@ function update_date(cam, options, ...values) {
 
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
         console.log("preloading " + cam.toString())
-        preload_images(function() {
-            console.log("preloading done")
-        });
+        preload_images();
     }
     
     console.log("trying to set a new date: " + cam.current_date);
