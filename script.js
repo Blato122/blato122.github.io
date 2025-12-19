@@ -1,4 +1,4 @@
-// move that somewhere else later!!!
+// move that somewhere else later!
 // https://www.w3schools.com/w3css/w3css_tabulators.asp
 function switch_tab(event, tab) {
     let tabs = document.getElementsByClassName("tab");
@@ -16,7 +16,7 @@ function switch_tab(event, tab) {
 const HISTORY_URL = 'https://blato122.github.io/history.html';
 
 function history_handler() {
-    // jakos obslugiwac to, jak sie nie wybierze nic!!!!!!! (?)
+    // jakos obslugiwac to, jak sie nie wybierze nic!(?)
     let start_date_picker = document.getElementById('start-date-picker');
     let end_date_picker = document.getElementById('end-date-picker');
     let start_date = new Date(start_date_picker.value);
@@ -143,44 +143,6 @@ function CET_CEST_now() {
 // chyba że słownik znowu
 let preloaded_images_day = {}
 
-// function preload_images(cam) {
-//     // wyczyścić tablicę przed rozpoczęciem?
-//     // https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
-
-//     // for (let cam_name in cams) {
-//     //     let cam = cams[cam_name]
-//         console.log(cam.name);
-//         // Check if preloaded_images_day[cam] is undefined, and initialize it if it is
-//         if (!preloaded_images_day[cam]) { // auto conversion from a Camera object to a string via toString() method
-//             preloaded_images_day[cam] = [];
-//         }
-
-//         let url_no_hour = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/REPLACE-WITH-HOUR-STR.jpg`;
-//         preloaded_images_day[cam].length = 0; // xd
-//         for (let i = 7; i <= 21; i++) {
-//             let hour_str = (i >= 10) ? i : ("0" + i);
-//             let img = new Image();
-//             // whaat lol
-//             // ten listener już jest - ALE WTEDY nie ma adresu od razu tego not found tylko dopiero po wystapieniu erroru potem
-//             // i przez to trzeba ladowac foto zle i dopiero potem error i jest wolniej czy cos
-//             // img.onload = () => {
-//             //     // console.log("onload called!!!");
-//             //     // console.log(img.src);
-//             //     preloaded_images_day[cam].push(img);
-//             // }
-            
-//             img.onerror = () => {
-//                 // console.log("onerror called!!!");
-//                 img.src = 'image-not-found.png'; 
-//                 // console.log(img.src);
-//             };
-//             img.src = url_no_hour.replace("REPLACE-WITH-HOUR-STR", hour_str); //? + // ten string do replace dać do jakiegoś consta może?!?!!!!!
-//             console.log(img.src);
-//             preloaded_images_day[cam].push(img); // src czy url czy co
-//         }
-//     // }
-// }
-
 function preload_images(cam) {
     let promises = [];
 
@@ -234,7 +196,6 @@ function update_photo(cam) {
     }
 }
 
-// 0x vs 0b???
 const SET_HOUR = 0x0001;
 const SET_DAY = 0x0010;
 const SET_MONTH = 0x0100;
@@ -283,8 +244,6 @@ function update_date(cam, options, ...values) {
 
 // albo w ogóle w github actions wyłączyć pobieranie dla czasu zimowego!
 //  sprawdzić czy te daty CET w ogóle działają! + po zmianie czasu!
-
-// split into 2 files??? ale syf tu jest już
 
 class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ TUTAJ CHYBA?
     constructor(name) {
