@@ -157,67 +157,59 @@ function CET_CEST_now() {
     }
 }
 
-async function github_contents(path) {
-    let response = await fetch(`https://api.github.com/repos/Blato122/mont-blanc-cam/contents/${path}?ref=main`, {
-        headers: { 'Accept': 'application/vnd.github+json' }
-    });
-    if (!response.ok) return null;
+const CAM_NAMES = ["gouter", "gouter_old", "tete_rousse"];
 
-    let data = await response.json();
-    return Array.isArray(data) ? data : null;
+function photo_url(cam_name, date, hour) {
+    let hour_str = (hour >= 10) ? hour : ("0" + hour);
+    return `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${cam_name}/${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}/${hour_str}.jpg`;
 }
 
-function newest_number(entries, type, jpg_only) {
-    let nums = [];
-
-    for (let entry of entries || []) {
-        if (entry.type !== type) continue;
-
-        let name = jpg_only ? entry.name.replace(/\.jpg$/, "") : entry.name;
-        if (jpg_only && entry.name === name) continue;
-        if (!/^\d+$/.test(name)) continue;
-
-        nums.push(Number(name));
+async function photo_exists(cam_name, date, hour) {
+    try {
+        let response = await fetch(photo_url(cam_name, date, hour), { method: "HEAD" });
+        return response.ok;
+    } catch (error) {
+        return false;
     }
-
-    return nums.length ? Math.max(...nums) : null;
 }
 
-async function find_latest_for_camera(cam_name) {
-    let years = await github_contents(cam_name);
-    let year = newest_number(years, "dir", false);
-    if (year === null) return null;
+async function find_latest_photo_on_day(date) {
+    for (let hour = 21; hour >= 7; hour--) {
+        let checks = await Promise.all(CAM_NAMES.map(cam_name => photo_exists(cam_name, date, hour)));
+        let cam_idx = checks.indexOf(true);
 
-    let months = await github_contents(`${cam_name}/${year}`);
-    let month = newest_number(months, "dir", false);
-    if (month === null) return null;
-
-    let days = await github_contents(`${cam_name}/${year}/${month}`);
-    let day = newest_number(days, "dir", false);
-    if (day === null) return null;
-
-    let hours = await github_contents(`${cam_name}/${year}/${month}/${day}`);
-    let hour = newest_number(hours, "file", true);
-    if (hour === null) return null;
-
-    return {
-        cam_name: cam_name,
-        date: new Date(year, month - 1, day, hour)
-    };
-}
-
-async function find_latest_available_photo() {
-    let latest = null;
-    let cam_names = ["gouter", "gouter_old", "tete_rousse"];
-
-    for (let cam_name of cam_names) {
-        let photo = await find_latest_for_camera(cam_name);
-        if (photo && (!latest || photo.date > latest.date)) {
-            latest = photo;
+        if (cam_idx !== -1) {
+            return {
+                cam_name: CAM_NAMES[cam_idx],
+                date: new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour)
+            };
         }
     }
 
-    return latest;
+    return null;
+}
+
+function add_days(date, days) {
+    let result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
+async function find_latest_available_photo() {
+    let start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    let lower_limit = new Date(init.getFullYear(), init.getMonth(), init.getDate());
+    let archive_search_start = new Date(2025, 10, 16); // search hint, not the latest date
+
+    if (start > archive_search_start) {
+        start = archive_search_start;
+    }
+
+    for (let date = start; date >= lower_limit; date = add_days(date, -1)) {
+        let photo = await find_latest_photo_on_day(date);
+        if (photo) return photo;
+    }
+
+    return null;
 }
 
 function dom_ready() {
