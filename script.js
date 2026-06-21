@@ -13,6 +13,25 @@ function switch_tab(event, tab) {
     event.currentTarget.className += " active";
 }
 
+function set_active_camera_tab(cam_name) {
+    let tab = cam_name + "-tab";
+    let tabs = document.getElementsByClassName("tab");
+    let tablinks = document.getElementsByClassName("tab-select");
+
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = "none";
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    document.getElementById(tab).style.display = "block";
+    for (let i = 0; i < tablinks.length; i++) {
+        if (tablinks[i].getAttribute("onclick").includes(tab)) {
+            tablinks[i].className += " active";
+            break;
+        }
+    }
+}
+
 const HISTORY_URL = 'https://blato122.github.io/history.html';
 
 function history_handler() {
@@ -136,6 +155,34 @@ function CET_CEST_now() {
     } else {
         return new Date(local_date + cet_offset_millis);
     }
+}
+
+async function find_latest_available_photo() {
+    let response = await fetch('https://api.github.com/repos/Blato122/mont-blanc-cam/git/trees/main?recursive=1', {
+        headers: { 'Accept': 'application/vnd.github+json' }
+    });
+    if (!response.ok) return null;
+
+    let data = await response.json();
+    if (!data.tree) return null;
+
+    let latest = null;
+
+    for (let item of data.tree) {
+        let match = item.path.match(/^(gouter|gouter_old|tete_rousse)\/(\d{4})\/(\d{1,2})\/(\d{1,2})\/(\d{1,2})\.jpg$/);
+        if (!match) continue;
+
+        let photo = {
+            cam_name: match[1],
+            date: new Date(Number(match[2]), Number(match[3]) - 1, Number(match[4]), Number(match[5]))
+        };
+
+        if (!latest || photo.date > latest.date) {
+            latest = photo;
+        }
+    }
+
+    return latest;
 }
 
 // zawiera wszystkie zdjęcia z danego dnia
@@ -354,12 +401,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
 }
 
 // global!!!
-const latest_available = new Date('15 November 2025 21:00:00 GMT+0100');
-
 let today = CET_CEST_now(); // current date, can't go past that (CET/CEST)
-if (today > latest_available) {
-    today = latest_available;
-}
 const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting the program, can't go earlier than that (CET)
 
 let cams = {
@@ -384,7 +426,20 @@ function webcam_setup(name) {
     update_date(cam, SET_ALL, today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); //?
 }
 
-function main() {
+async function main() {
+    let active_cam_name = "tete_rousse";
+
+    try {
+        let latest_available = await find_latest_available_photo();
+        if (latest_available && today > latest_available.date) {
+            today = latest_available.date;
+            active_cam_name = latest_available.cam_name;
+        }
+    } catch (error) {
+        console.log("could not find latest available photo", error);
+    }
+
+    set_active_camera_tab(active_cam_name);
     webcam_setup("gouter");
     webcam_setup("gouter_old");
     webcam_setup("tete_rousse");
