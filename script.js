@@ -157,27 +157,62 @@ function CET_CEST_now() {
     }
 }
 
-async function find_latest_available_photo() {
-    let response = await fetch('https://api.github.com/repos/Blato122/mont-blanc-cam/git/trees/main?recursive=1', {
+async function github_contents(path) {
+    let response = await fetch(`https://api.github.com/repos/Blato122/mont-blanc-cam/contents/${path}?ref=main`, {
         headers: { 'Accept': 'application/vnd.github+json' }
     });
     if (!response.ok) return null;
 
     let data = await response.json();
-    if (!data.tree) return null;
+    return Array.isArray(data) ? data : null;
+}
 
+function newest_number(entries, type, jpg_only) {
+    let nums = [];
+
+    for (let entry of entries || []) {
+        if (entry.type !== type) continue;
+
+        let name = jpg_only ? entry.name.replace(/\.jpg$/, "") : entry.name;
+        if (jpg_only && entry.name === name) continue;
+        if (!/^\d+$/.test(name)) continue;
+
+        nums.push(Number(name));
+    }
+
+    return nums.length ? Math.max(...nums) : null;
+}
+
+async function find_latest_for_camera(cam_name) {
+    let years = await github_contents(cam_name);
+    let year = newest_number(years, "dir", false);
+    if (year === null) return null;
+
+    let months = await github_contents(`${cam_name}/${year}`);
+    let month = newest_number(months, "dir", false);
+    if (month === null) return null;
+
+    let days = await github_contents(`${cam_name}/${year}/${month}`);
+    let day = newest_number(days, "dir", false);
+    if (day === null) return null;
+
+    let hours = await github_contents(`${cam_name}/${year}/${month}/${day}`);
+    let hour = newest_number(hours, "file", true);
+    if (hour === null) return null;
+
+    return {
+        cam_name: cam_name,
+        date: new Date(year, month - 1, day, hour)
+    };
+}
+
+async function find_latest_available_photo() {
     let latest = null;
+    let cam_names = ["gouter", "gouter_old", "tete_rousse"];
 
-    for (let item of data.tree) {
-        let match = item.path.match(/^(gouter|gouter_old|tete_rousse)\/(\d{4})\/(\d{1,2})\/(\d{1,2})\/(\d{1,2})\.jpg$/);
-        if (!match) continue;
-
-        let photo = {
-            cam_name: match[1],
-            date: new Date(Number(match[2]), Number(match[3]) - 1, Number(match[4]), Number(match[5]))
-        };
-
-        if (!latest || photo.date > latest.date) {
+    for (let cam_name of cam_names) {
+        let photo = await find_latest_for_camera(cam_name);
+        if (photo && (!latest || photo.date > latest.date)) {
             latest = photo;
         }
     }
@@ -322,17 +357,19 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
     init() {
         // https://stackoverflow.com/questions/39993676/code-inside-domcontentloaded-event-not-working
         // initialize: hour slider position, current hour text, info text as an empty string
+        if (!this.slider || !this.hour_display || !this.info) return;
+
         if (document.readyState !== 'loading') {
             console.log("document already ready")
-            document.getElementById(this.name + "-time-slider").value = today.getHours();
-            document.getElementById(this.name + "-hour").innerText = today.getHours();
-            document.getElementById(this.name + "-info").innerText = "";
+            this.slider.value = today.getHours();
+            this.hour_display.innerText = today.getHours();
+            this.info.innerText = "";
         } else {
             document.addEventListener('DOMContentLoaded', () => {
                 console.log("document was not ready: DOMContentLoaded")
-                document.getElementById(this.name + "-time-slider").value = today.getHours();
-                document.getElementById(this.name + "-hour").innerText = today.getHours();
-                document.getElementById(this.name + "-info").innerText = "";
+                this.slider.value = today.getHours();
+                this.hour_display.innerText = today.getHours();
+                this.info.innerText = "";
             });
         }
     }
@@ -351,6 +388,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         // });
         
         // update when slider value changes
+        if (!this.slider) return;
         this.slider.addEventListener("input", () => {  // podać tutaj nazwę kamery!!!
             console.log("slider: input")
             update_date(this, SET_HOUR, Number(this.slider.value));
@@ -365,6 +403,8 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         let prev_year_button = document.getElementById(this.name + '-prev-year');
         let next_year_button = document.getElementById(this.name + '-next-year');
         let now_button = document.getElementById(this.name + '-now');
+
+        if (!now_button) return;
         
         now_button.addEventListener('click', () => {
             update_date(this, SET_ALL, today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); 
@@ -453,4 +493,8 @@ async function main() {
     webcam_setup("tete_rousse");
 }
 
-main();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
