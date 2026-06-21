@@ -185,6 +185,11 @@ async function find_latest_available_photo() {
     return latest;
 }
 
+function dom_ready() {
+    if (document.readyState !== 'loading') return Promise.resolve();
+    return new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
+}
+
 // zawiera wszystkie zdjęcia z danego dnia
 // tylko offset o 7 trzeba, no bo zdjęcie z 7 godziny jest na indeksie 0
 // chyba że słownik znowu
@@ -404,11 +409,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
 let today = CET_CEST_now(); // current date, can't go past that (CET/CEST)
 const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting the program, can't go earlier than that (CET)
 
-let cams = {
-    "gouter": new Camera("gouter"),
-    "gouter_old": new Camera("gouter_old"),
-    "tete_rousse": new Camera("tete_rousse")
-}
+let cams = {}
 
 function webcam_setup(name) {
     // cet/cest time check!
@@ -437,6 +438,13 @@ async function main() {
         }
     } catch (error) {
         console.log("could not find latest available photo", error);
+    }
+
+    await dom_ready();
+    cams = {
+        "gouter": new Camera("gouter"),
+        "gouter_old": new Camera("gouter_old"),
+        "tete_rousse": new Camera("tete_rousse")
     }
 
     set_active_camera_tab(active_cam_name);
