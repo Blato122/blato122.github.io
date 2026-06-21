@@ -157,59 +157,10 @@ function CET_CEST_now() {
     }
 }
 
-const CAM_NAMES = ["gouter", "gouter_old", "tete_rousse"];
-
-function photo_url(cam_name, date, hour) {
-    let hour_str = (hour >= 10) ? hour : ("0" + hour);
-    return `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${cam_name}/${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}/${hour_str}.jpg`;
-}
-
-async function photo_exists(cam_name, date, hour) {
-    try {
-        let response = await fetch(photo_url(cam_name, date, hour), { method: "HEAD" });
-        return response.ok;
-    } catch (error) {
-        return false;
-    }
-}
-
-async function find_latest_photo_on_day(date) {
-    for (let hour = 21; hour >= 7; hour--) {
-        let checks = await Promise.all(CAM_NAMES.map(cam_name => photo_exists(cam_name, date, hour)));
-        let cam_idx = checks.indexOf(true);
-
-        if (cam_idx !== -1) {
-            return {
-                cam_name: CAM_NAMES[cam_idx],
-                date: new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour)
-            };
-        }
-    }
-
-    return null;
-}
-
 function add_days(date, days) {
     let result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
-}
-
-async function find_latest_available_photo() {
-    let start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    let lower_limit = new Date(init.getFullYear(), init.getMonth(), init.getDate());
-    let archive_search_start = new Date(2025, 10, 16); // search hint, not the latest date
-
-    if (start > archive_search_start) {
-        start = archive_search_start;
-    }
-
-    for (let date = start; date >= lower_limit; date = add_days(date, -1)) {
-        let photo = await find_latest_photo_on_day(date);
-        if (photo) return photo;
-    }
-
-    return null;
 }
 
 function dom_ready() {
@@ -315,6 +266,23 @@ function render_hour_buttons(cam) {
 
         cam.hour_buttons.appendChild(button);
     }
+}
+
+function latest_preloaded_photo() {
+    let latest = null;
+
+    for (let name in cams) {
+        let cam = cams[name];
+        let hours = available_hours(cam);
+        if (!hours.length) continue;
+
+        let hour = hours[hours.length - 1];
+        if (!latest || hour > latest.hour) {
+            latest = { cam_name: name, hour: hour };
+        }
+    }
+
+    return latest;
 }
 
 const SET_HOUR = 0x0001;
@@ -471,32 +439,24 @@ const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting th
 let cams = {}
 
 function webcam_setup(name) {
-    // cet/cest time check!
-    if (today.getHours() < 6) {
-        today.setDate(today.getDate() - 1);
-        today.setHours(21);
-    } else if (today.getHours() > 21) {
-        today.setHours(21);
-    }
-
     let cam = cams[name];
     cam.all();
-    
-    // initial update
-    update_date(cam, SET_ALL, today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); //?
+    render_hour_buttons(cam);
+    if (update_photo(cam)) cam.info.innerText = "";
+    cam.hour_display.innerText = cam.current_date.getHours();
 }
 
 async function main() {
     let active_cam_name = "tete_rousse";
+    let archive_search_start = new Date(2025, 10, 16, 21); // search hint, not the latest date
 
-    try {
-        let latest_available = await find_latest_available_photo();
-        if (latest_available && today > latest_available.date) {
-            today = latest_available.date;
-            active_cam_name = latest_available.cam_name;
-        }
-    } catch (error) {
-        console.log("could not find latest available photo", error);
+    if (today > archive_search_start) {
+        today = archive_search_start;
+    } else if (today.getHours() < 6) {
+        today.setDate(today.getDate() - 1);
+        today.setHours(21);
+    } else if (today.getHours() > 21) {
+        today.setHours(21);
     }
 
     await dom_ready();
@@ -504,6 +464,25 @@ async function main() {
         "gouter": new Camera("gouter"),
         "gouter_old": new Camera("gouter_old"),
         "tete_rousse": new Camera("tete_rousse")
+    }
+
+    for (let date = today; date >= init; date = add_days(date, -1)) {
+        today = date;
+        for (let name in cams) {
+            cams[name].current_date = new Date(today);
+        }
+
+        await Promise.all(Object.values(cams).map(cam => preload_images(cam)));
+
+        let latest = latest_preloaded_photo();
+        if (latest) {
+            today.setHours(latest.hour);
+            active_cam_name = latest.cam_name;
+            for (let name in cams) {
+                cams[name].current_date = new Date(today);
+            }
+            break;
+        }
     }
 
     set_active_camera_tab(active_cam_name);
