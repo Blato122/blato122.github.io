@@ -16,7 +16,7 @@
 .photo-row {
     display: flex;
     gap: 12px;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .photo-row img {
@@ -27,14 +27,12 @@
 
 .hour-panel {
     width: 80px;
-    margin-top: 8px;
 }
 
 .hour-buttons {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin-top: 8px;
 }
 
 .hour-buttons button {
