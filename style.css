@@ -16,7 +16,7 @@
 .photo-row {
     display: flex;
     gap: 12px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .photo-row img {
@@ -27,6 +27,7 @@
 
 .hour-panel {
     width: 80px;
+    margin-top: 8px;
 }
 
 .hour-buttons {
@@ -134,9 +135,9 @@ button.active {
 
 /* Center the gallery section */
 .gallery {
-    width: 50%; /* Set the width */
+    width: auto; /* Set the width */
     height: 50%;
-    margin: 0 auto; /* Center horizontally */
+    margin: 0; /* Center horizontally */
     border: 2px solid #001d6d; /* Add border */
     border-radius: 10px; /* Add border radius */
     padding: 20px; /* Add padding */
@@ -155,15 +156,30 @@ button.active {
 .history {
     display: flex;
     flex-direction: column; /* Align children vertically */
-    align-items: center; /* Center children horizontally */
+    align-items: flex-start; /* Center children horizontally */
     /* justify-content: center; /* Center children vertically */ 
     /* text-align: center; /* Align text center */ 
     /* Add additional styling as needed */
 }
 
+.main-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.camera-tabs {
+    flex: 1 1 760px;
+}
+
 .container {
     display: flex;
-    justify-content: center; /* Center horizontally */
+    flex: 0 0 260px;
+    justify-content: flex-start; /* Center horizontally */
     /* align-items: center; /* Center vertically */ 
     /* height: 100vh; /* Set height to full viewport height */ 
 }
@@ -181,9 +197,13 @@ button.active {
 
  /* ? */
  @media screen and (max-width: 900px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
     .gallery {
         height: 70%;
-        width: 70%; /* Set the width */
+        width: auto; /* Set the width */
     }
 
     .photo-row {

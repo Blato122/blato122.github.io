@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mont Blanc cameras</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css?v=2">
     <link rel="stylesheet" type="text/css" href="modal.css">
     <script src="script.js?v=5" async></script>
     <script src="modal.js" async></script>
@@ -34,90 +34,94 @@
 
     <div class="unavailable-notice">Showing the latest available archived photos. New captures are currently paused due to GitHub storage limits.</div>
 
-    <!-- gouter display none because the camera is broken for some reason and now tete is default -->
-    <div id="gouter-tab" class="tab" style="display:none">
-        <div class="gallery">
-            <h2>Goûter camera photo</h2>
-            <div id="gouter-date"></div>
-            <div class="photo-row">
-                <img class="modal-button" id="gouter-photo" src="" alt="Gouter photo">
-                <div class="hour-panel">
-                    <div class="hour-buttons" id="gouter-hour-buttons"></div>
-                    <div id="gouter-info"></div>
+    <div class="main-layout">
+        <div class="camera-tabs">
+            <!-- gouter display none because the camera is broken for some reason and now tete is default -->
+            <div id="gouter-tab" class="tab" style="display:none">
+                <div class="gallery">
+                    <h2>Goûter camera photo</h2>
+                    <div id="gouter-date"></div>
+                    <div class="photo-row">
+                        <img class="modal-button" id="gouter-photo" src="" alt="Gouter photo">
+                        <div class="hour-panel">
+                            <div class="hour-buttons" id="gouter-hour-buttons"></div>
+                            <div id="gouter-info"></div>
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        <input type="date" id="gouter-date-picker">
+                        <button id="gouter-now">latest</button>
+                    </div>
                 </div>
             </div>
-            <div class="navigation">
-                <input type="date" id="gouter-date-picker">
-                <button id="gouter-now">latest</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="gouter_old-tab" class="tab" style="display:none">
-        <div class="gallery">
-            <h2>Goûter "Vieux refuge" camera photo</h2>
-            <div id="gouter_old-date"></div>
-            <div class="photo-row">
-                <img class="modal-button" id="gouter_old-photo" src="" alt="Gouter 'Vieux refuge' photo">
-                <div class="hour-panel">
-                    <div class="hour-buttons" id="gouter_old-hour-buttons"></div>
-                    <div id="gouter_old-info"></div>
+            <div id="gouter_old-tab" class="tab" style="display:none">
+                <div class="gallery">
+                    <h2>Goûter "Vieux refuge" camera photo</h2>
+                    <div id="gouter_old-date"></div>
+                    <div class="photo-row">
+                        <img class="modal-button" id="gouter_old-photo" src="" alt="Gouter 'Vieux refuge' photo">
+                        <div class="hour-panel">
+                            <div class="hour-buttons" id="gouter_old-hour-buttons"></div>
+                            <div id="gouter_old-info"></div>
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        <input type="date" id="gouter_old-date-picker">
+                        <button id="gouter_old-now">latest</button>
+                    </div>
                 </div>
             </div>
-            <div class="navigation">
-                <input type="date" id="gouter_old-date-picker">
-                <button id="gouter_old-now">latest</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="tete_rousse-tab" class="tab">
-        <div class="gallery">
-            <h2>Tête Rousse camera photo</h2>
-            <div id="tete_rousse-date"></div>
-            <div class="photo-row">
-                <img class="modal-button" id="tete_rousse-photo" src="" alt="Tete Rousse photo">
-                <div class="hour-panel">
-                    <div class="hour-buttons" id="tete_rousse-hour-buttons"></div>
-                    <div id="tete_rousse-info"></div>
+            <div id="tete_rousse-tab" class="tab">
+                <div class="gallery">
+                    <h2>Tête Rousse camera photo</h2>
+                    <div id="tete_rousse-date"></div>
+                    <div class="photo-row">
+                        <img class="modal-button" id="tete_rousse-photo" src="" alt="Tete Rousse photo">
+                        <div class="hour-panel">
+                            <div class="hour-buttons" id="tete_rousse-hour-buttons"></div>
+                            <div id="tete_rousse-info"></div>
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        <input type="date" id="tete_rousse-date-picker">
+                        <button id="tete_rousse-now">latest</button>
+                    </div>
                 </div>
             </div>
-            <div class="navigation">
-                <input type="date" id="tete_rousse-date-picker">
-                <button id="tete_rousse-now">latest</button>
-            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="history">
-            <h2>Display history</h2>
-            <!-- <input type="radio" id="gouter-picker" name="gouter-picker" value="gouter">
-            <label for="gouter">Goûter</label><br>
-            <input type="radio" id="tete_rousse-picker" name="tete_rousse-picker" value="tete_rousse">
-            <label for="tete_rousse">Tête Rousse</label><br> -->
+        <div class="container">
+            <div class="history">
+                <h2>Display history</h2>
+                <!-- <input type="radio" id="gouter-picker" name="gouter-picker" value="gouter">
+                <label for="gouter">Goûter</label><br>
+                <input type="radio" id="tete_rousse-picker" name="tete_rousse-picker" value="tete_rousse">
+                <label for="tete_rousse">Tête Rousse</label><br> -->
 
-            <form>  
-                <select id="dropdown-camera-list">  
-                    <option value="none">---Choose camera---</option>  
-                    <option value="gouter">Goûter</option>  
-                    <option value="gouter_old">Goûter "Vieux refuge"</option>
-                    <option value="tete_rousse">Tête Rousse</option>  
-                </select>  
-            </form>           
+                <form>  
+                    <select id="dropdown-camera-list">  
+                        <option value="none">---Choose camera---</option>  
+                        <option value="gouter">Goûter</option>  
+                        <option value="gouter_old">Goûter "Vieux refuge"</option>
+                        <option value="tete_rousse">Tête Rousse</option>  
+                    </select>  
+                </form>           
 
-            <input type="date" id="end-date-picker" name="end-date-picker">
-            <label for="end-date-picker">Choose end date</label><br>
-            <input type="date" id="start-date-picker" name="start-date-picker">
-            <label for="start-date-picker">Choose start date</label><br>
-            <!-- default value dla hour picker! -->
-            <input type="number" id="hour-picker" name="hour-picker" min="7" max="21">
-            <!-- czym się różni name od id od value? -->
-            <label for="hour-picker">Choose an hour (7-21)</label><br>
-            <button onclick="history_handler()">Display history (enter CST/CEST timezone dates!)</button>
-            <!-- on klika dac do jsa? -->
-            <!-- on klika dac do jsa? -->
-            <!-- on klika dac do jsa? -->
+                <input type="date" id="end-date-picker" name="end-date-picker">
+                <label for="end-date-picker">Choose end date</label><br>
+                <input type="date" id="start-date-picker" name="start-date-picker">
+                <label for="start-date-picker">Choose start date</label><br>
+                <!-- default value dla hour picker! -->
+                <input type="number" id="hour-picker" name="hour-picker" min="7" max="21">
+                <!-- czym się różni name od id od value? -->
+                <label for="hour-picker">Choose an hour (7-21)</label><br>
+                <button onclick="history_handler()">Display history (enter CST/CEST timezone dates!)</button>
+                <!-- on klika dac do jsa? -->
+                <!-- on klika dac do jsa? -->
+                <!-- on klika dac do jsa? -->
+            </div>
         </div>
     </div>
 
