@@ -13,43 +13,41 @@
     transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
-.slidecontainer {
-    width: 100%; /* Width of the outside container */
-}
-  
-/* The slider itself */
-.slider {
-    -webkit-appearance: none; /* Override default CSS styles */
-    appearance: none;
-    width: 100%; /* Full-width */
-    height: 20px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
+.photo-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
 }
 
-/* Mouse-over effects */
-.slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
+.photo-row img {
+    flex: 1 1 0;
+    min-width: 0;
+    width: 0;
 }
 
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 20px; /* Slider handle height */
-    background: #001d6d; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+.hour-panel {
+    width: 80px;
+    margin-top: 8px;
 }
 
-.slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 20px; /* Slider handle height */
-    background: #001d6d; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+.hour-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.hour-buttons button {
+    cursor: pointer;
+    padding: 6px 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ccc;
+}
+
+.hour-buttons button.active {
+    background-color: #335280;
+    color: white;
 }
 
 /* 
@@ -188,4 +186,22 @@ button.active {
     .gallery {
         height: 70%;
         width: 70%; /* Set the width */
- }
+    }
+
+    .photo-row {
+        flex-direction: column;
+    }
+
+    .photo-row img {
+        width: 100%;
+    }
+
+    .hour-panel {
+        width: 100%;
+    }
+
+    .hour-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

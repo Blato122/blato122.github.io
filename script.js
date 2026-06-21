@@ -290,6 +290,41 @@ function update_photo(cam) {
     return true;
 }
 
+function available_hours(cam) {
+    let hours = [];
+    let images = preloaded_images_day[cam] || [];
+
+    for (let i = 7; i <= 21; i++) {
+        let img = images[i - 7];
+        if (img && img.getAttribute('src')) {
+            hours.push(i);
+        }
+    }
+
+    return hours;
+}
+
+function render_hour_buttons(cam) {
+    if (!cam.hour_buttons) return;
+
+    cam.hour_buttons.innerHTML = "";
+    let hours = available_hours(cam);
+
+    for (let hour of hours) {
+        let button = document.createElement("button");
+        button.innerText = (hour >= 10 ? hour : "0" + hour) + ":00";
+        if (hour === cam.current_date.getHours()) {
+            button.className = "active";
+        }
+
+        button.addEventListener("click", () => {
+            update_date(cam, SET_HOUR, hour);
+        });
+
+        cam.hour_buttons.appendChild(button);
+    }
+}
+
 const SET_HOUR = 0x0001;
 const SET_DAY = 0x0010;
 const SET_MONTH = 0x0100;
@@ -308,30 +343,31 @@ function update_date(cam, options, ...values) {
     if (options & SET_MONTH) cam.current_date.setMonth(values[i++]);
     if (options & SET_YEAR) cam.current_date.setFullYear(values[i]);
 
+    if (cam.current_date < init || cam.current_date > today) {
+        cam.current_date = old_date;
+        cam.info.innerText = "not available - cannot go past " + today + " or before " + init;
+        cam.hour_display.innerText = cam.current_date.getHours();
+        return;
+    }
+
     if (options & SET_DAY || options & SET_MONTH || options & SET_YEAR) {
         console.log("preloading " + cam.toString())
-        preload_images(cam).then(() => {
+        return preload_images(cam).then(() => {
             console.log("trying to set a new date: " + cam.current_date);
-            if (cam.current_date >= init && cam.current_date <= today) {
-                if (update_photo(cam)) cam.info.innerText = "";
-            } else {
-                cam.current_date = old_date;
-                cam.slider.value = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
-                cam.info.innerText = "not available - cannot go past " + today + " or before " + init;
+            let hours = available_hours(cam);
+            if (hours.length && !hours.includes(cam.current_date.getHours())) {
+                cam.current_date.setHours(hours[hours.length - 1]);
             }
-            cam.hour_display.innerText = cam.slider.value;
+            render_hour_buttons(cam);
+            if (update_photo(cam)) cam.info.innerText = "";
+            cam.hour_display.innerText = cam.current_date.getHours();
         });
     }
     
     console.log("trying to set a new date: " + cam.current_date);
-    if (cam.current_date >= init && cam.current_date <= today) {
-        if (update_photo(cam)) cam.info.innerText = "";
-    } else {
-        cam.current_date = old_date;
-        cam.slider.value = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
-        cam.info.innerText = "not available - cannot go past " + today + " or before " + init;
-    }
-    cam.hour_display.innerText = cam.slider.value;
+    if (update_photo(cam)) cam.info.innerText = "";
+    render_hour_buttons(cam);
+    cam.hour_display.innerText = cam.current_date.getHours();
 }
 
 // albo w ogóle w github actions wyłączyć pobieranie dla czasu zimowego!
@@ -342,7 +378,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         this.name = name;
         this.base_url = `https://raw.githubusercontent.com/blato122/mont-blanc-cam/main/${this.name}/`;
         this.img_element = document.getElementById(this.name + '-photo');
-        this.slider = document.getElementById(this.name + "-time-slider");
+        this.hour_buttons = document.getElementById(this.name + "-hour-buttons");
         this.hour_display = document.getElementById(this.name + "-hour");
         this.info = document.getElementById(this.name + "-info");
         this.date = document.getElementById(this.name + "-date");
@@ -356,18 +392,16 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
 
     init() {
         // https://stackoverflow.com/questions/39993676/code-inside-domcontentloaded-event-not-working
-        // initialize: hour slider position, current hour text, info text as an empty string
-        if (!this.slider || !this.hour_display || !this.info) return;
+        // initialize: current hour text and info text as an empty string
+        if (!this.hour_display || !this.info) return;
 
         if (document.readyState !== 'loading') {
             console.log("document already ready")
-            this.slider.value = today.getHours();
             this.hour_display.innerText = today.getHours();
             this.info.innerText = "";
         } else {
             document.addEventListener('DOMContentLoaded', () => {
                 console.log("document was not ready: DOMContentLoaded")
-                this.slider.value = today.getHours();
                 this.hour_display.innerText = today.getHours();
                 this.info.innerText = "";
             });
@@ -379,7 +413,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         //     let today_cropped = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), 0, 0, 0);
         //     if (this.current_date.getTime() === today_cropped.getTime()) {
         //         this.info.innerText = "not available yet - try again in a few minutes";
-        //         // i slider na poprzednią godzinę
+        //         // i godzina na poprzednią
         //     }
         //     // console.log("img_element: error")
         //     // if (this.img_element.src != 'image-not-found.png') {
@@ -387,12 +421,6 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         //     // }
         // });
         
-        // update when slider value changes
-        if (!this.slider) return;
-        this.slider.addEventListener("input", () => {  // podać tutaj nazwę kamery!!!
-            console.log("slider: input")
-            update_date(this, SET_HOUR, Number(this.slider.value));
-        });
     }
 
     setup_navigation() {
@@ -408,8 +436,7 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
         
         now_button.addEventListener('click', () => {
             update_date(this, SET_ALL, today.getHours(), today.getDate(), today.getMonth(), today.getFullYear()); 
-            this.slider.value = this.current_date.getHours();
-            this.hour_display.innerText = this.slider.value;
+            this.hour_display.innerText = this.current_date.getHours();
             // today w sumie to nie now. no ale ktoś musiałby przez 1h siedzieć na tej stronie żeby było opóźnienie
         });
         
