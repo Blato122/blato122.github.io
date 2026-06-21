@@ -164,7 +164,7 @@ function preload_images(cam) {
             let promise = new Promise((resolve, reject) => {
                 img.onload = () => resolve();
                 img.onerror = () => {
-                    img.src = 'image-not-found.png';
+                    img.removeAttribute('src');
                     resolve();
                 };
             });
@@ -184,8 +184,14 @@ function update_photo(cam) {
     // let img_url = `${cam.base_url}${cam.current_date.getFullYear()}/${cam.current_date.getMonth() + 1}/${cam.current_date.getDate()}/${hour_str}.jpg`; // months are 0-indexed
     let hour = cam.current_date.getHours();
     // console.log("update photo url: " + preloaded_images_day[cam][hour-7].src);
-    let img_url = preloaded_images_day[cam][hour-7].src; // 7.00 to indeks 0
+    let img_url = preloaded_images_day[cam][hour-7].getAttribute('src') || ""; // 7.00 to indeks 0
     console.log("displaying image: " + img_url);
+    if (!img_url) {
+        cam.img_element.removeAttribute('src');
+        cam.date.innerText = cam.current_date;
+        cam.info.innerText = "No archived photo available for this time.";
+        return false;
+    }
     cam.img_element.src = img_url; // niepotrzebnie istnieją 2 te same obiekty Image? mogę przypisać może obiekt zamiast src tylko? ale pewnie jakiś inny problem będzie
     cam.date.innerText = cam.current_date; // date only changes when the photo changes
 
@@ -194,6 +200,7 @@ function update_photo(cam) {
     if (cam.img_element.src == 'https://blato122.github.io/image-not-found.png' && (cam.current_date.getTime() === today_cropped.getTime())) {
         cam.info.innerText = "not available yet - try again in a few minutes";
     }
+    return true;
 }
 
 const SET_HOUR = 0x0001;
@@ -219,8 +226,7 @@ function update_date(cam, options, ...values) {
         preload_images(cam).then(() => {
             console.log("trying to set a new date: " + cam.current_date);
             if (cam.current_date >= init && cam.current_date <= today) {
-                update_photo(cam);
-                cam.info.innerText = "";
+                if (update_photo(cam)) cam.info.innerText = "";
             } else {
                 cam.current_date = old_date;
                 cam.slider.value = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
@@ -232,8 +238,7 @@ function update_date(cam, options, ...values) {
     
     console.log("trying to set a new date: " + cam.current_date);
     if (cam.current_date >= init && cam.current_date <= today) {
-        update_photo(cam);
-        cam.info.innerText = "";
+        if (update_photo(cam)) cam.info.innerText = "";
     } else {
         cam.current_date = old_date;
         cam.slider.value = (cam.current_date.getHours() >= 10) ? cam.current_date.getHours() : ("0" + cam.current_date.getHours());
@@ -349,7 +354,12 @@ class Camera { // change name to gallery? + W SUMIE TE FUNKCJE UPDATE TEŻ DAĆ 
 }
 
 // global!!!
-const today = CET_CEST_now(); // current date, can't go past that (CET/CEST)
+const latest_available = new Date('15 November 2025 21:00:00 GMT+0100');
+
+let today = CET_CEST_now(); // current date, can't go past that (CET/CEST)
+if (today > latest_available) {
+    today = latest_available;
+}
 const init = new Date('27 March 2024 08:00:00 GMT+0100'); // date of starting the program, can't go earlier than that (CET)
 
 let cams = {
